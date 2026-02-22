@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Wireless Helper</string>
+    <string name="start_service">Iniciar Conexão Sem Fio</string>
+    <string name="stop_service">Parar Busca</string>
+    
+    <string name="connection_mode_label">Modo de Conexão</string>
+    <string name="mode_nsd">Wi-Fi Tradicional</string>
+    <string name="mode_hotspot_phone">Roteador do Celular</string>
+    <string name="mode_passive">Roteador do Tablet/Multimidia</string>
+    <string name="mode_wifi_direct">Wi-Fi Direct (Experimental)</string>
+    
+    <string name="auto_start_label">Início Automático</string>
+    <string name="auto_start_no">Não (Manual)</string>
+    <string name="auto_start_bt">Sim (Bluetooth)</string>
+    <string name="auto_start_wifi">Sim (WIFI)</string>
+    
+    <string name="bt_device_label">Dispositivo Bluetooth</string>
+    <string name="wifi_ssid_label">Rede Wi-Fi</string>
+    <string name="wifi_ssid_hint">Enter Wi-Fi SSID</string>
+    <string name="wifi_ssid_dialog_title">Inicio Automatico via Wi-Fi</string>
+    <string name="wifi_ssid_dialog_msg">O serviço será iniciado automaticamente quando conectado a rede:</string>
+    <string name="wifi_ssid_save">Salvar</string>
+    <string name="wifi_ssid_permissions_needed">Permissões Necessárias</string>
+    
+    <string name="wifi_background_location_title">Localização em Plano de Fundo Necessária</string>
+    <string name="wifi_background_location_msg">Para detectar redes Wi-Fi mesmo com o aplicativo fechado, defina a permissão de localização como \'Permitir o Tempo Todo\' nas configurações do Android.</string>
+    <string name="wifi_background_location_button">Configurações</string>
+    
+    <string name="not_set">Nenhum Selecionado</string>
+    
+    <string name="logs_label">Logs:</string>
+    <string name="category_info">Informações</string>
+    <string name="settings_header">Configurações</string>
+    <string name="version">Versão</string>
+    <string name="about">Sobre &amp; Suporte</string>
+    <string name="about_description">Assistente de Conexão para Headunit Revived</string>
+
+    <!-- Language -->
+    <string name="language_label">Idioma</string>
+    <string name="language_system_default">Padrão do Sistema</string>
+    <string name="language_english">Inglês</string>
+    <string name="language_portuguese">Português (Brasil)</string>
+    <string name="language_german">Alemão</string>
+    <string name="language_russian">Russo</string>
+
+    <!-- Notifications & Service -->
+    <string name="notif_searching">Procurando a multimidia…</string>
+    <string name="notif_connected">Conectado ao Android Auto</string>
+    <string name="notif_disconnected">Android Auto desconectado</string>
+    <string name="notif_stop">Parar</string>
+    <string name="notif_channel_name">Wireless Helper</string>
+    <string name="connected">Conectado</string>
+
+    <!-- About Dialog -->
+    <string name="about_dialog_body">Wireless Helper é um assistente para conexão sem fio no aplicativo Headunit Revived.\n\nDesenvolvido por André Rinas\n© 2026</string>
+
+    <!-- Bluetooth -->
+    <string name="no_paired_devices">Nenhum dispositivo pareado encontrado</string>
+    <string name="select_bt_device">Selecionar Dispositivo Bluetooth</string>
+    <string name="auto_start_linked">O aplicativo irá iniciar automaticamente ao se conectador com %s</string>
+</resources>
