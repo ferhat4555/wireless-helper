@@ -39,6 +39,7 @@
     <string name="language_label">Язык</string>
     <string name="language_system_default">Системный</string>
     <string name="language_english">English</string>
+    <string name="language_portuguese">Portuguese (Brazil)</string>
     <string name="language_german">Deutsch</string>
     <string name="language_russian">Русский</string>
 
