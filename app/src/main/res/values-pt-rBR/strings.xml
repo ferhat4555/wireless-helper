@@ -46,6 +46,7 @@
     <string name="language_portuguese">Português (Brasil)</string>
     <string name="language_german">Alemão</string>
     <string name="language_russian">Russo</string>
+    <string name="language_arabic">Árabe</string>
 
     <!-- Notifications & Service -->
     <string name="notif_searching">Procurando a multimidia…</string>

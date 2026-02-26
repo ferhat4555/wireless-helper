@@ -203,11 +203,12 @@ class MainActivity : AppCompatActivity() {
             getString(R.string.language_english),
             getString(R.string.language_german),
             getString(R.string.language_russian),
-            getString(R.string.language_portuguese)
+            getString(R.string.language_portuguese),
+            getString(R.string.language_arabic)
         )
     }
 
-    private val languageTags = arrayOf("", "en", "de", "ru", "pt-BR")
+    private val languageTags = arrayOf("", "en", "de", "ru", "pt-BR", "ar")
 
     private fun showLanguageSelector() {
         val prefs = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)

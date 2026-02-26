@@ -46,6 +46,7 @@
     <string name="language_portuguese">Portuguese (Brazil)</string>
     <string name="language_german">Deutsch</string>
     <string name="language_russian">Русский</string>
+    <string name="language_arabic">Arabisch</string>
 
     <!-- Notifications & Service -->
     <string name="notif_searching">Suche nach Headunit…</string>
