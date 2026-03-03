@@ -48,6 +48,9 @@ adb shell am start -a android.intent.action.VIEW -d "wirelesshelper://stop"
 ```
 
 ## Changelog
+### v.1.0.1
+- Fixing offline mode
+
 ### v.1.0.0 - First ready version for Playstore!
 - Added Deep Links and App Shortcuts for full automation (Samsung Modes & Routines support).
 - Added Arabic translation, thanks to @A5H0
