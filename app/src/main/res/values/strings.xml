@@ -27,6 +27,11 @@
     <string name="wifi_background_location_msg">To detect Wi-Fi while the app is closed, please set Location permission to \'Allow all the time\' in Android settings.</string>
     <string name="wifi_background_location_button">Settings</string>
 
+    <string name="wifi_direct_name_label">Wi-Fi Direct Device Name</string>
+    <string name="wifi_direct_name_hint">Enter Device Name (e.g. AndroidAuto-Unit)</string>
+    <string name="wifi_direct_name_dialog_title">Wi-Fi Direct Auto-Connect</string>
+    <string name="wifi_direct_name_dialog_msg">Enter the name of the Wi-Fi Direct device you want to connect to. The app will automatically connect once found.</string>
+
     <string name="battery_opt_title">Battery Optimization detected</string>
     <string name="battery_opt_msg">To allow Auto-start on WiFi/Bluetooth, please set this app to \'Unrestricted\' in battery settings.</string>
     

@@ -27,6 +27,11 @@
     <string name="wifi_background_location_msg">Чтобы определять сеть Wi-Fi, когда приложение закрыто, установите разрешение для местоположения на \'Разрешать всегда\' в настройках Android.</string>
     <string name="wifi_background_location_button">Настройки</string>
 
+    <string name="wifi_direct_name_label">Имя устройства Wi-Fi Direct</string>
+    <string name="wifi_direct_name_hint">Введите имя (например, AndroidAuto-Unit)</string>
+    <string name="wifi_direct_name_dialog_title">Wi-Fi Direct Автоподключение</string>
+    <string name="wifi_direct_name_dialog_msg">Введите имя устройства Wi-Fi Direct для автоматического подключения при обнаружении.</string>
+
     <string name="battery_opt_title">Обнаружена оптимизация батареи</string>
     <string name="battery_opt_msg">Чтобы разрешить автозапуск по Wi-Fi/Bluetooth, установите для этого приложения значение \'Без ограничений\' в настройках батареи.</string>
 
@@ -63,4 +68,9 @@
     <string name="no_paired_devices">Сопряжённые Bluetooth-устройства не найдены</string>
     <string name="select_bt_device">Выберите Bluetooth-устройство</string>
     <string name="auto_start_linked">Автозапуск привязан к %s</string>
+
+    <string name="shortcut_start_title">Начать поиск</string>
+    <string name="shortcut_start_desc">Начать поиск Android Auto</string>
+    <string name="shortcut_stop_title">Остановить поиск</string>
+    <string name="shortcut_stop_desc">Остановить активный поиск</string>
 </resources>
