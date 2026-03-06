@@ -27,6 +27,11 @@
     <string name="wifi_background_location_msg">Para detectar redes Wi-Fi mesmo com o aplicativo fechado, defina a permissão de localização como \'Permitir o Tempo Todo\' nas configurações do Android.</string>
     <string name="wifi_background_location_button">Configurações</string>
 
+    <string name="wifi_direct_name_label">Nome do Dispositivo Wi-Fi Direct</string>
+    <string name="wifi_direct_name_hint">Digite o nome (ex: AndroidAuto-Unit)</string>
+    <string name="wifi_direct_name_dialog_title">Wi-Fi Direct Conexão Automática</string>
+    <string name="wifi_direct_name_dialog_msg">Digite o nome do dispositivo Wi-Fi Direct para conexão automática quando encontrado.</string>
+
     <string name="battery_opt_title">Otimização de Bateria detectada</string>
     <string name="battery_opt_msg">Para permitir o início automático via Wi-Fi/Bluetooth, defina este aplicativo como \'Sem restrições\' nas configurações de bateria.</string>
     
@@ -62,5 +67,10 @@
     <!-- Bluetooth -->
     <string name="no_paired_devices">Nenhum dispositivo pareado encontrado</string>
     <string name="select_bt_device">Selecionar Dispositivo Bluetooth</string>
-    <string name="auto_start_linked">O aplicativo irá iniciar automaticamente ao se conectador com %s</string>
-</resources>
+    <string name="auto_start_linked">O aplicativo irá iniciar automaticamente ao se conectar com %s</string>
+
+    <string name="shortcut_start_title">Iniciar Busca</string>
+    <string name="shortcut_start_desc">Iniciar busca pelo Android Auto</string>
+    <string name="shortcut_stop_title">Parar Busca</string>
+    <string name="shortcut_stop_desc">Interromper a busca ativa</string>
+    </resources>

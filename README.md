@@ -48,6 +48,9 @@ adb shell am start -a android.intent.action.VIEW -d "wirelesshelper://stop"
 ```
 
 ## Changelog
+### v.1.1.0
+- Enhancement for the Wifi-Direct Mode. Note: Since Android 10 this mode is very restrictive and it might now work for every modern phone. Just try it
+
 ### v.1.0.1
 - Fixing offline mode
 

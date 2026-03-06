@@ -7,9 +7,12 @@ import android.net.Network
 import android.os.Build
 import android.os.Parcelable
 import android.util.Log
-import java.util.concurrent.atomic.AtomicBoolean
-import kotlinx.coroutines.*
 import com.andrerinas.wirelesshelper.connection.AapProxy
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicBoolean
 
 abstract class BaseStrategy(protected val context: Context, private val scope: CoroutineScope) : ConnectionStrategy {
 
@@ -77,9 +80,14 @@ abstract class BaseStrategy(protected val context: Context, private val scope: C
                 val localPort = proxy.start()
 
                 val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-                // FALLBACK TO ID 0 IF OFFLINE
-                val targetNetwork = (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) connectivityManager.activeNetwork else null)
-                    ?: createFakeNetwork(0)
+                
+                // Determine which network to use. If forced, or if offline, use Network 0.
+                val targetNetwork = if (forceFakeNetwork) {
+                    createFakeNetwork(0)
+                } else {
+                    (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) connectivityManager.activeNetwork else null)
+                        ?: createFakeNetwork(0)
+                }
 
                 val wifiInfo: Parcelable? = try {
                     val clazz = Class.forName("android.net.wifi.WifiInfo")

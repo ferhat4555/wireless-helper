@@ -14,7 +14,6 @@ import android.net.NetworkRequest
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.util.Log
-import androidx.core.content.PermissionChecker
 
 class WifiJobService : JobService() {
 

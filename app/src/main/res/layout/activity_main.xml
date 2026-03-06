@@ -93,7 +93,39 @@
                         android:textSize="14sp"/>
                 </LinearLayout>
 
-                <!-- 2. Auto Start -->
+                <!-- 2. WiFi Direct Name (Hidden by default, shown if mode 3) -->
+                <LinearLayout
+                    android:id="@+id/layoutWifiDirectName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="14dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/bg_item_middle"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wifi_direct_name_label"
+                        android:textColor="@color/text_title"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        android:layout_marginBottom="2dp"/>
+
+                    <TextView
+                        android:id="@+id/tvWifiDirectNameValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/not_set"
+                        android:textColor="@color/text_subtitle"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+                <!-- 3. Auto Start -->
                 <LinearLayout
                     android:id="@+id/layoutAutoStart"
                     android:layout_width="match_parent"
@@ -102,7 +134,7 @@
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="14dp"
                     android:layout_marginBottom="2dp"
-                    android:background="@drawable/bg_item_bottom"
+                    android:background="@drawable/bg_item_middle"
                     android:clickable="true"
                     android:focusable="true">
 
@@ -124,7 +156,7 @@
                         android:textSize="14sp"/>
                 </LinearLayout>
 
-                <!-- 3. Bluetooth Device -->
+                <!-- 4. Bluetooth Device -->
                 <LinearLayout
                     android:id="@+id/layoutBluetoothDevice"
                     android:layout_width="match_parent"
@@ -133,7 +165,7 @@
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="14dp"
                     android:layout_marginBottom="2dp"
-                    android:background="@drawable/bg_item_bottom"
+                    android:background="@drawable/bg_item_middle"
                     android:clickable="true"
                     android:focusable="true"
                     android:visibility="gone">
@@ -156,7 +188,7 @@
                         android:textSize="14sp"/>
                 </LinearLayout>
 
-                <!-- 4. WiFi Network -->
+                <!-- 5. WiFi Network -->
                 <LinearLayout
                     android:id="@+id/layoutWifiNetwork"
                     android:layout_width="match_parent"
@@ -165,7 +197,7 @@
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="14dp"
                     android:layout_marginBottom="2dp"
-                    android:background="@drawable/bg_item_bottom"
+                    android:background="@drawable/bg_item_middle"
                     android:clickable="true"
                     android:focusable="true"
                     android:visibility="gone">
@@ -188,7 +220,7 @@
                         android:textSize="14sp"/>
                 </LinearLayout>
 
-                <!-- 4. Language -->
+                <!-- 6. Language -->
                 <LinearLayout
                     android:id="@+id/layoutLanguage"
                     android:layout_width="match_parent"

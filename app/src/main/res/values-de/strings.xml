@@ -27,6 +27,11 @@
     <string name="wifi_background_location_msg">Um WLAN im Hintergrund zu erkennen, setzen Sie die Standortberechtigung in den Android-Einstellungen bitte auf \'Immer zulassen\'.</string>
     <string name="wifi_background_location_button">Einstellungen</string>
 
+    <string name="wifi_direct_name_label">Wi-Fi Direct Gerätename</string>
+    <string name="wifi_direct_name_hint">Gerätename eingeben (z.B. AndroidAuto-Unit)</string>
+    <string name="wifi_direct_name_dialog_title">Wi-Fi Direct Auto-Connect</string>
+    <string name="wifi_direct_name_dialog_msg">Geben Sie den Namen des Wi-Fi Direct-Geräts ein, mit dem Sie sich verbinden möchten. Die App verbindet sich automatisch, sobald es gefunden wird.</string>
+
     <string name="battery_opt_title">Akku-Optimierung erkannt</string>
     <string name="battery_opt_msg">Um Autostart über WiFi/Bluetooth zu ermöglichen, stellen Sie diese App in den Akku-Einstellungen bitte auf \'Nicht eingeschränkt\'.</string>
     
@@ -66,4 +71,9 @@ Entwickelt von André Rinas
     <string name="no_paired_devices">Keine gekoppelten Bluetooth-Geräte gefunden</string>
     <string name="select_bt_device">Bluetooth-Gerät auswählen</string>
     <string name="auto_start_linked">Auto-Start verknüpft mit %s</string>
+
+    <string name="shortcut_start_title">Suche starten</string>
+    <string name="shortcut_start_desc">Suche nach Android Auto starten</string>
+    <string name="shortcut_stop_title">Suche stoppen</string>
+    <string name="shortcut_stop_desc">Aktive Suche beenden</string>
 </resources>

@@ -27,6 +27,11 @@
     <string name="wifi_background_location_msg">لاكتشاف الواي فاي أثناء إغلاق التطبيق، يرجى ضبط إذن الموقع على \'السماح في جميع الأوقات\' في إعدادات Android.</string>
     <string name="wifi_background_location_button">الإعدادات</string>
 
+    <string name="wifi_direct_name_label">اسم جهاز Wi-Fi Direct</string>
+    <string name="wifi_direct_name_hint">أدخل اسم الجهاز (مثلاً AndroidAuto-Unit)</string>
+    <string name="wifi_direct_name_dialog_title">اتصال تلقائي Wi-Fi Direct</string>
+    <string name="wifi_direct_name_dialog_msg">أدخل اسم جهاز Wi-Fi Direct الذي تريد الاتصال به. سيتصل التطبيق تلقائيًا فور العثور عليه.</string>
+
     <string name="battery_opt_title">تم اكتشاف تحسين البطارية</string>
     <string name="battery_opt_msg">للسماح بالتشغيل التلقائي عبر الواي فاي/البلوتوث، يرجى ضبط هذا التطبيق على \'غير مقيد\' في إعدادات البطارية.</string>
 
@@ -63,4 +68,9 @@
     <string name="no_paired_devices">لا توجد أجهزة بلوتوث مقترنة</string>
     <string name="select_bt_device">اختر جهاز البلوتوث</string>
     <string name="auto_start_linked">التشغيل التلقائي مرتبط بـ %s</string>
+
+    <string name="shortcut_start_title">بدء البحث</string>
+    <string name="shortcut_start_desc">بدء البحث عن Android Auto</string>
+    <string name="shortcut_stop_title">إيقاف البحث</string>
+    <string name="shortcut_stop_desc">إيقاف البحث النشط</string>
 </resources>

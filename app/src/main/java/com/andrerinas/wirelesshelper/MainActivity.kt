@@ -3,7 +3,6 @@ package com.andrerinas.wirelesshelper
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
-import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -24,9 +23,15 @@ import androidx.core.os.LocaleListCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.andrerinas.wirelesshelper.WifiJobService
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val MODE_NSD = 0
+        const val MODE_HOTSPOT_PHONE = 1
+        const val MODE_PASSIVE = 2
+        const val MODE_WIFI_DIRECT = 3
+    }
 
     private lateinit var btnToggleService: Button
     
@@ -44,6 +49,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var layoutWifiNetwork: View
     private lateinit var tvWifiNetworkValue: TextView
+
+    private lateinit var layoutWifiDirectName: View
+    private lateinit var tvWifiDirectNameValue: TextView
 
     private lateinit var layoutLanguage: View
     private lateinit var tvLanguageValue: TextView
@@ -89,6 +97,7 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_WirelessHelper)
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
+        
         setContentView(R.layout.activity_main)
 
         initializeViews()
@@ -96,16 +105,12 @@ class MainActivity : AppCompatActivity() {
         restoreState()
         handleIntent(intent)
 
-        val scrollView = findViewById<View>(R.id.main_root).findViewWithTag<View>("scroll_view") ?: findViewById(R.id.main_root)
-        // Note: I'll use the root but ensure the ScrollView gets the padding if possible.
-        // Let's stick to the root for simplicity as it has the background.
-        
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_root)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            // Apply bottom padding for navigation bar and top for status bar
-            // We add the status bar height to the existing design padding
-            v.setPadding(v.paddingLeft, systemBars.top, v.paddingRight, systemBars.bottom)
-            insets
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_root)) { v, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                v.setPadding(v.paddingLeft, systemBars.top, v.paddingRight, systemBars.bottom)
+                insets
+            }
         }
     }
 
@@ -123,6 +128,9 @@ class MainActivity : AppCompatActivity() {
 
         layoutWifiNetwork = findViewById(R.id.layoutWifiNetwork)
         tvWifiNetworkValue = findViewById(R.id.tvWifiNetworkValue)
+
+        layoutWifiDirectName = findViewById(R.id.layoutWifiDirectName)
+        tvWifiDirectNameValue = findViewById(R.id.tvWifiDirectNameValue)
 
         layoutLanguage = findViewById(R.id.layoutLanguage)
         tvLanguageValue = findViewById(R.id.tvLanguageValue)
@@ -160,6 +168,7 @@ class MainActivity : AppCompatActivity() {
                 .setSingleChoiceItems(connectionModes, currentMode) { dialog, which ->
                     prefs.edit { putInt("connection_mode", which) }
                     tvConnectionModeValue.text = connectionModes[which]
+                    updateModeSpecificUI(which)
                     dialog.dismiss()
                 }
                 .setNegativeButton(android.R.string.cancel, null)
@@ -194,6 +203,10 @@ class MainActivity : AppCompatActivity() {
 
         layoutWifiNetwork.setOnClickListener {
             showWifiSelector()
+        }
+
+        layoutWifiDirectName.setOnClickListener {
+            showWifiDirectNameSelector()
         }
     }
 
@@ -240,7 +253,9 @@ class MainActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
         val savedSsid = prefs.getString("auto_start_wifi_ssid", "")
 
+        @Suppress("DEPRECATION")
         val wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as android.net.wifi.WifiManager
+        @Suppress("DEPRECATION")
         val ssid = wifiManager.connectionInfo.ssid
         val currentSsid = ssid?.replace("\"", "") ?: ""
         
@@ -295,6 +310,40 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
+    private fun showWifiDirectNameSelector() {
+        val prefs = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
+        val savedName = prefs.getString("wifi_direct_target_name", "")
+
+        val input = android.widget.EditText(this).apply {
+            setHint(R.string.wifi_direct_name_hint)
+            setText(savedName)
+            setTextColor(ContextCompat.getColor(context, R.color.text_title))
+            setHintTextColor(ContextCompat.getColor(context, R.color.text_subtitle))
+        }
+
+        val container = android.widget.FrameLayout(this)
+        val params = android.widget.FrameLayout.LayoutParams(
+            android.widget.FrameLayout.LayoutParams.MATCH_PARENT,
+            android.widget.FrameLayout.LayoutParams.WRAP_CONTENT
+        )
+        params.setMargins(64, 24, 64, 24)
+        container.addView(input, params)
+
+        MaterialAlertDialogBuilder(this, R.style.DarkAlertDialog)
+            .setTitle(R.string.wifi_direct_name_dialog_title)
+            .setMessage(R.string.wifi_direct_name_dialog_msg)
+            .setView(container)
+            .setPositiveButton(R.string.wifi_ssid_save) { _, _ ->
+                val newName = input.text.toString().trim()
+                if (newName.isNotEmpty()) {
+                    prefs.edit { putString("wifi_direct_target_name", newName) }
+                    tvWifiDirectNameValue.text = newName
+                }
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
+    }
+
     private fun showBluetoothDeviceSelector() {
         if (Build.VERSION.SDK_INT >= 31 && ContextCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.BLUETOOTH_CONNECT), 101)
@@ -333,12 +382,14 @@ class MainActivity : AppCompatActivity() {
         
         val connMode = prefs.getInt("connection_mode", 0)
         tvConnectionModeValue.text = connectionModes.getOrElse(connMode) { connectionModes[0] }
+        updateModeSpecificUI(connMode)
 
         val autoMode = prefs.getInt("auto_start_mode", 0)
         updateAutoStartUI(autoMode)
         
         tvBluetoothDeviceValue.text = prefs.getString("auto_start_bt_name", getString(R.string.not_set))
         tvWifiNetworkValue.text = prefs.getString("auto_start_wifi_ssid", getString(R.string.not_set))
+        tvWifiDirectNameValue.text = prefs.getString("wifi_direct_target_name", getString(R.string.not_set))
 
         // Language
         val langTag = prefs.getString("app_language", "") ?: ""
@@ -348,6 +399,14 @@ class MainActivity : AppCompatActivity() {
         updateButtonState(WirelessHelperService.isRunning, WirelessHelperService.isConnected)
     }
 
+    private fun updateModeSpecificUI(mode: Int) {
+        if (mode == MODE_WIFI_DIRECT) {
+            layoutWifiDirectName.visibility = View.VISIBLE
+        } else {
+            layoutWifiDirectName.visibility = View.GONE
+        }
+    }
+
     private fun updateAutoStartUI(mode: Int) {
         tvAutoStartValue.text = autoStartModes.getOrElse(mode) { autoStartModes[0] }
         
@@ -355,19 +414,14 @@ class MainActivity : AppCompatActivity() {
             0 -> { // No
                 layoutBluetoothDevice.visibility = View.GONE
                 layoutWifiNetwork.visibility = View.GONE
-                layoutAutoStart.setBackgroundResource(R.drawable.bg_item_middle)
             }
             1 -> { // Bluetooth
                 layoutBluetoothDevice.visibility = View.VISIBLE
                 layoutWifiNetwork.visibility = View.GONE
-                layoutAutoStart.setBackgroundResource(R.drawable.bg_item_middle)
-                layoutBluetoothDevice.setBackgroundResource(R.drawable.bg_item_middle)
             }
             2 -> { // WiFi
                 layoutBluetoothDevice.visibility = View.GONE
                 layoutWifiNetwork.visibility = View.VISIBLE
-                layoutAutoStart.setBackgroundResource(R.drawable.bg_item_middle)
-                layoutWifiNetwork.setBackgroundResource(R.drawable.bg_item_middle)
             }
         }
     }
@@ -375,10 +429,11 @@ class MainActivity : AppCompatActivity() {
     private fun checkPermissionsAndStart() {
         val permissions = mutableListOf<String>()
         if (Build.VERSION.SDK_INT >= 33) {
-            permissions.add("android.permission.POST_NOTIFICATIONS")
+            permissions.add(android.Manifest.permission.POST_NOTIFICATIONS)
+            permissions.add(android.Manifest.permission.NEARBY_WIFI_DEVICES)
         }
         if (Build.VERSION.SDK_INT >= 31) {
-            permissions.add("android.permission.BLUETOOTH_CONNECT")
+            permissions.add(android.Manifest.permission.BLUETOOTH_CONNECT)
         }
         
         // Needed for WiFi SSID access
