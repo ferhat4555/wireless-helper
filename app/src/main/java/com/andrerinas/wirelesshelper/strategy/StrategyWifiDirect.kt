@@ -1,5 +1,6 @@
 package com.andrerinas.wirelesshelper.strategy
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -10,9 +11,7 @@ import android.net.nsd.NsdServiceInfo
 import android.net.wifi.p2p.WifiP2pDevice
 import android.net.wifi.p2p.WifiP2pManager
 import android.util.Log
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class StrategyWifiDirect(context: Context, scope: CoroutineScope) : BaseStrategy(context, scope) {
 
@@ -39,7 +38,8 @@ class StrategyWifiDirect(context: Context, scope: CoroutineScope) : BaseStrategy
 
     private fun setupP2p() {
         if (p2pManager == null) return
-        p2pChannel = p2pManager.initialize(context, context.mainLooper, null)
+        val channel = p2pManager.initialize(context, context.mainLooper, null)
+        p2pChannel = channel
         
         val intentFilter = IntentFilter().apply {
             addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION)
@@ -48,6 +48,7 @@ class StrategyWifiDirect(context: Context, scope: CoroutineScope) : BaseStrategy
         }
 
         p2pReceiver = object : BroadcastReceiver() {
+            @SuppressLint("MissingPermission")
             override fun onReceive(context: Context, intent: Intent) {
                 when (intent.action) {
                     WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION -> {
@@ -112,23 +113,29 @@ class StrategyWifiDirect(context: Context, scope: CoroutineScope) : BaseStrategy
         }
     }
 
+    @SuppressLint("MissingPermission")
     private fun discoverPeersWithRetry() {
-        p2pManager?.stopPeerDiscovery(p2pChannel, null)
-        p2pManager?.removeGroup(p2pChannel, null)
+        val channel = p2pChannel ?: return
+        
+        // Reset framework state before discovery to avoid Error 0
+        p2pManager?.stopPeerDiscovery(channel, null)
+        p2pManager?.removeGroup(channel, null)
 
-        p2pManager?.discoverPeers(p2pChannel, object : WifiP2pManager.ActionListener {
+        p2pManager?.discoverPeers(channel, object : WifiP2pManager.ActionListener {
             override fun onSuccess() { Log.d(TAG, "P2P Peer Discovery Started") }
             override fun onFailure(reason: Int) { 
                 Log.e(TAG, "P2P Peer Discovery Failed: $reason. Retrying in 5s...")
                 getStrategyScope().launch {
                     delay(5000)
-                    if (p2pChannel != null) discoverPeersWithRetry()
+                    discoverPeersWithRetry()
                 }
             }
         })
     }
 
+    @SuppressLint("MissingPermission")
     private fun connectToPeer(device: WifiP2pDevice) {
+        val channel = p2pChannel ?: return
         val config = android.net.wifi.p2p.WifiP2pConfig().apply {
             deviceAddress = device.deviceAddress
             wps.setup = android.net.wifi.WpsInfo.PBC
@@ -136,7 +143,7 @@ class StrategyWifiDirect(context: Context, scope: CoroutineScope) : BaseStrategy
         
         isConnectingToPeer = true
         Log.i(TAG, "Attempting to connect to P2P device (PBC): ${device.deviceName}")
-        p2pManager?.connect(p2pChannel, config, object : WifiP2pManager.ActionListener {
+        p2pManager?.connect(channel, config, object : WifiP2pManager.ActionListener {
             override fun onSuccess() { Log.d(TAG, "P2P Connect initiated") }
             override fun onFailure(reason: Int) { 
                 Log.e(TAG, "P2P Connect failed: $reason")
@@ -172,6 +179,7 @@ class StrategyWifiDirect(context: Context, scope: CoroutineScope) : BaseStrategy
     }
 
     override fun stop() {
+        val channel = p2pChannel
         super.stop()
         try { nsdManager.stopServiceDiscovery(discoveryListener) } catch (e: Exception) {}
         discoveryListener = null
@@ -179,7 +187,10 @@ class StrategyWifiDirect(context: Context, scope: CoroutineScope) : BaseStrategy
         try { context.unregisterReceiver(p2pReceiver) } catch (e: Exception) {}
         p2pReceiver = null
         
-        p2pManager?.stopPeerDiscovery(p2pChannel, null)
+        if (channel != null) {
+            @SuppressLint("MissingPermission")
+            p2pManager?.stopPeerDiscovery(channel, null)
+        }
         p2pChannel = null
         isConnectingToPeer = false
     }

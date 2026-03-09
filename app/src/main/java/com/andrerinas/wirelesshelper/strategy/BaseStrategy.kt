@@ -107,15 +107,28 @@ abstract class BaseStrategy(protected val context: Context, private val scope: C
 
                 Log.i(TAG, "Firing Intent. Host=127.0.0.1, Port=$localPort, Network=$targetNetwork")
                 
-                // 1. Try via Broadcast (if TransparentTriggerActivity is active)
+                // 1. Send internal broadcast. If TransparentTriggerActivity is active, it will pick this up
+                // and fire the AA intent from the foreground to bypass security restrictions.
                 val broadcastIntent = Intent(ACTION_TRIGGER_INTENT).apply {
                     putExtra("intent", intent)
                     setPackage(context.packageName)
                 }
                 context.sendBroadcast(broadcastIntent)
 
-                // 2. Standard Start (Fallback for Widget/App usage)
-                context.startActivity(intent)
+                // 2. Direct Start (Fallback if activity isn't active or for manual starts)
+                try {
+                    context.startActivity(intent)
+                } catch (e: android.content.ActivityNotFoundException) {
+                    Log.w(TAG, "Legacy activity not found. Trying minimal broadcast fallback for AA 16.4+.")
+                    val receiverIntent = Intent().apply {
+                        setClassName("com.google.android.projection.gearhead", "com.google.android.apps.auto.wireless.setup.receiver.WirelessStartupReceiver")
+                        action = "com.google.android.apps.auto.wireless.setup.receiver.wirelessstartup.START"
+                        putExtra("ip_address", "127.0.0.1")
+                        putExtra("projection_port", localPort)
+                        addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
+                    }
+                    context.sendBroadcast(receiverIntent)
+                }
 
                 // The lock stays active until proxy confirms connection or timeout
                 delay(15000) 
