@@ -26,14 +26,18 @@ class WirelessHelperWidget : AppWidgetProvider() {
             val serviceIntent = Intent(context, WirelessHelperService::class.java)
             
             if (isRunning) {
+                // If service is running, just stop it normally
                 serviceIntent.action = WirelessHelperService.ACTION_STOP
                 context.startService(serviceIntent)
             } else {
-                serviceIntent.action = WirelessHelperService.ACTION_START
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    context.startForegroundService(serviceIntent)
-                } else {
-                    context.startService(serviceIntent)
+                // Check if Wi-Fi is enabled before starting the service via Widget
+                WifiNotificationHelper.checkWifiAndConnect(context) {
+                    serviceIntent.action = WirelessHelperService.ACTION_START
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        context.startForegroundService(serviceIntent)
+                    } else {
+                        context.startService(serviceIntent)
+                    }
                 }
             }
         }
