@@ -73,4 +73,9 @@
     <string name="shortcut_start_desc">Iniciar busca pelo Android Auto</string>
     <string name="shortcut_stop_title">Parar Busca</string>
     <string name="shortcut_stop_desc">Interromper a busca ativa</string>
+
+    <string name="channel_name_alerts">Alertas de Conexão</string>
+    <string name="notification_wifi_off_title">Wi-Fi Desligado!</string>
+    <string name="notification_wifi_off_text">O Headunit Revived precisa do Wi-Fi para conectar.</string>
+    <string name="action_turn_on_wifi">LIGAR WI-FI</string>
     </resources>
