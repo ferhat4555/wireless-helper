@@ -73,4 +73,9 @@
     <string name="shortcut_start_desc">Start searching for Android Auto</string>
     <string name="shortcut_stop_title">Stop Searching</string>
     <string name="shortcut_stop_desc">Stop the active search</string>
+
+    <string name="channel_name_alerts">Connection Alerts</string>
+    <string name="notification_wifi_off_title">Wi-Fi is Disabled!</string>
+    <string name="notification_wifi_off_text">Headunit Revived needs Wi-Fi to connect.</string>
+    <string name="action_turn_on_wifi">TURN ON WI-FI</string>
 </resources>
