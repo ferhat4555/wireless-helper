@@ -20,36 +20,40 @@ class WirelessHelperTileService : TileService() {
         val isRunning = WirelessHelperService.isRunning
 
         if (isRunning) {
+            // If service is running, just stop it normally
             val serviceIntent = Intent(this, WirelessHelperService::class.java).apply {
                 action = WirelessHelperService.ACTION_STOP
             }
             startService(serviceIntent)
         } else {
-            val triggerIntent = Intent(this, TransparentTriggerActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            }
-            
-            try {
-                if (Build.VERSION.SDK_INT >= 34) {
-                    val pendingIntent = android.app.PendingIntent.getActivity(
-                        this, 0, triggerIntent, 
-                        android.app.PendingIntent.FLAG_IMMUTABLE or android.app.PendingIntent.FLAG_UPDATE_CURRENT
-                    )
-                    startActivityAndCollapse(pendingIntent)
-                } else {
-                    @Suppress("DEPRECATION")
-                    startActivityAndCollapse(triggerIntent)
+            // Check if Wi-Fi is enabled before starting the service via Quick Settings Tile
+            WifiNotificationHelper.checkWifiAndConnect(this) {
+                val triggerIntent = Intent(this, TransparentTriggerActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 }
-            } catch (e: Exception) {
-                android.util.Log.e("HUREV_WIFI", "Failed to launch trigger activity from tile: ${e.message}")
-                // Fallback: Start service directly if activity launch is blocked
-                val serviceIntent = Intent(this, WirelessHelperService::class.java).apply {
-                    action = WirelessHelperService.ACTION_START
-                }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForegroundService(serviceIntent)
-                } else {
-                    startService(serviceIntent)
+                
+                try {
+                    if (Build.VERSION.SDK_INT >= 34) {
+                        val pendingIntent = android.app.PendingIntent.getActivity(
+                            this, 0, triggerIntent, 
+                            android.app.PendingIntent.FLAG_IMMUTABLE or android.app.PendingIntent.FLAG_UPDATE_CURRENT
+                        )
+                        startActivityAndCollapse(pendingIntent)
+                    } else {
+                        @Suppress("DEPRECATION")
+                        startActivityAndCollapse(triggerIntent)
+                    }
+                } catch (e: Exception) {
+                    android.util.Log.e("HUREV_WIFI", "Failed to launch trigger activity from tile: ${e.message}")
+                    // Fallback: Start service directly if activity launch is blocked
+                    val serviceIntent = Intent(this, WirelessHelperService::class.java).apply {
+                        action = WirelessHelperService.ACTION_START
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        startForegroundService(serviceIntent)
+                    } else {
+                        startService(serviceIntent)
+                    }
                 }
             }
         }

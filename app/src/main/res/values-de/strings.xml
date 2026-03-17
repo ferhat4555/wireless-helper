@@ -80,4 +80,9 @@ Entwickelt von André Rinas
     <string name="shortcut_start_desc">Suche nach Android Auto starten</string>
     <string name="shortcut_stop_title">Suche stoppen</string>
     <string name="shortcut_stop_desc">Aktive Suche beenden</string>
+
+    <string name="channel_name_alerts">Verbindungsalarme</string>
+    <string name="notification_wifi_off_title">WLAN ist deaktiviert!</string>
+    <string name="notification_wifi_off_text">Headunit Revived benötigt WLAN, um eine Verbindung herzustellen.</string>
+    <string name="action_turn_on_wifi">WLAN EINSCHALTEN</string>
 </resources>

@@ -26,8 +26,12 @@ class AutoStartReceiver : BroadcastReceiver() {
             Log.i(TAG, "BT Device connected: ${device?.name} (${device?.address})")
             
             if (device?.address == targetMac) {
-                Log.i(TAG, "MATCH! Starting service...")
-                startService(context)
+                Log.i(TAG, "MATCH! Checking Wi-Fi state before starting service...")
+                
+                // Wrap the service start logic to ensure Wi-Fi is enabled
+                WifiNotificationHelper.checkWifiAndConnect(context) {
+                    startService(context)
+                }
             }
         } else if (action == BluetoothDevice.ACTION_ACL_DISCONNECTED) {
             val device = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)

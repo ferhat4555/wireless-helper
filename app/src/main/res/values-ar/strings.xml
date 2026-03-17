@@ -77,4 +77,9 @@
     <string name="shortcut_start_desc">بدء البحث عن Android Auto</string>
     <string name="shortcut_stop_title">إيقاف البحث</string>
     <string name="shortcut_stop_desc">إيقاف البحث النشط</string>
+
+    <string name="channel_name_alerts">تنبيهات الاتصال</string>
+    <string name="notification_wifi_off_title">واي فاي معطل!</string>
+    <string name="notification_wifi_off_text">يحتاج Headunit Revived إلى واي فاي للاتصال.</string>
+    <string name="action_turn_on_wifi">تشغيل الواي فاي</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.andrerinas.wirelesshelper
 
+import android.Manifest
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
@@ -14,6 +15,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
@@ -31,6 +33,15 @@ class MainActivity : AppCompatActivity() {
         const val MODE_HOTSPOT_PHONE = 1
         const val MODE_PASSIVE = 2
         const val MODE_WIFI_DIRECT = 3
+    }
+
+    // Register the permissions callback to handle the notification permission request (Android 13+)
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (!isGranted) {
+            // Optional: Handle the case where the user denies the permission
+        }
     }
 
     private lateinit var btnToggleService: Button
@@ -111,6 +122,17 @@ class MainActivity : AppCompatActivity() {
         
         setContentView(R.layout.activity_main)
 
+        // Request notification permission for Android 13+ devices
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
+
         initializeViews()
         setupListeners()
         restoreState()
@@ -162,7 +184,7 @@ class MainActivity : AppCompatActivity() {
         layoutAbout.setOnClickListener {
             MaterialAlertDialogBuilder(this, R.style.DarkAlertDialog)
                 .setTitle(R.string.about)
-//                .setMessage("Wireless Helper is a trigger app for Headunit Revived.\n\nDeveloped by André Rinas\n© 2026")
+                // .setMessage("Wireless Helper is a trigger app for Headunit Revived.\n\nDeveloped by André Rinas\n© 2026")
                 .setMessage(getString(R.string.about_dialog_body))
                 .setPositiveButton(android.R.string.ok, null)
                 .show()
@@ -173,7 +195,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnToggleService.setOnClickListener {
-            if (isServiceRunning) stopLauncherService() else checkPermissionsAndStart()
+            if (isServiceRunning) {
+                // Stop service if it's already running
+                stopLauncherService() 
+            } else {
+                // Check Wi-Fi state before starting. isFromUi = true will trigger a Dialog Popup.
+                WifiNotificationHelper.checkWifiAndConnect(this, isFromUi = true) {
+                    checkPermissionsAndStart()
+                }
+            }
         }
 
         layoutConnectionMode.setOnClickListener {
@@ -631,7 +661,12 @@ class MainActivity : AppCompatActivity() {
                             tvConnectionModeValue.text = connectionModes[modeIdx]
                         }
                     }
-                    if (!isServiceRunning) checkPermissionsAndStart()
+                    // Wrapping deep-link trigger with Wi-Fi check (Background notification)
+                    if (!isServiceRunning) {
+                        WifiNotificationHelper.checkWifiAndConnect(this, isFromUi = false) {
+                            checkPermissionsAndStart()
+                        }
+                    }
                 }
                 "stop" -> {
                     if (isServiceRunning) stopLauncherService()

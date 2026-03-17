@@ -77,4 +77,9 @@
     <string name="shortcut_start_desc">Начать поиск Android Auto</string>
     <string name="shortcut_stop_title">Остановить поиск</string>
     <string name="shortcut_stop_desc">Остановить активный поиск</string>
+
+    <string name="channel_name_alerts">Оповещения о подключении</string>
+    <string name="notification_wifi_off_title">Wi-Fi отключен!</string>
+    <string name="notification_wifi_off_text">Для подключения Headunit Revived требуется Wi-Fi.</string>
+    <string name="action_turn_on_wifi">ВКЛЮЧИТЬ WI-FI</string>
 </resources>
