@@ -1,5 +1,6 @@
 package com.andrerinas.wirelesshelper
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -115,6 +116,7 @@ class WirelessHelperService : Service(), BaseStrategy.StateListener {
         }
     }
 
+    @SuppressLint("MissingPermission")
     private fun isBluetoothDeviceConnected(mac: String): Boolean {
         try {
             val bm = getSystemService(Context.BLUETOOTH_SERVICE) as android.bluetooth.BluetoothManager

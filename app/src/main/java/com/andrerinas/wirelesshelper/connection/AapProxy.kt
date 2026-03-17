@@ -105,28 +105,29 @@ class AapProxy(
     }
 
     /**
-     * Gracefully notifies the tablet that we are disconnecting.
+     * Sends a 'Magic Garbage' signal (16 bytes of 0xFF) to the tablet.
+     * This will cause a decryption error on the tablet, which we can catch
+     * and interpret as a clean disconnect.
      */
-    private fun sendByeBye() {
+    private fun sendDisconnectSignal() {
         val socket = activeTabletSocket ?: return
-        try {
-            // AAP Message: Channel 0, Flags 1, Length 4, Type 15 (ByeBye), Reason 1 (User)
-            val byeByePacket = byteArrayOf(
-                0, 1, 0, 4, 0, 15, 8, 1
-            )
-            Log.i(TAG, "Sending ByeBye to tablet...")
-            socket.getOutputStream().write(byeByePacket)
-            socket.getOutputStream().flush()
-            // Short sleep to ensure the packet is sent before socket close
-            Thread.sleep(100)
-        } catch (e: Exception) {
-            Log.w(TAG, "Failed to send ByeBye: ${e.message}")
-        }
+        Thread {
+            try {
+                Log.i(TAG, "Sending Magic Garbage disconnect signal...")
+                val signal = ByteArray(16) { 0xFF.toByte() }
+                socket.getOutputStream().write(signal)
+                socket.getOutputStream().flush()
+            } catch (e: Exception) {
+                Log.w(TAG, "Failed to send disconnect signal: ${e.message}")
+            }
+        }.start()
     }
 
     fun stop() {
         if (isRunning) {
-            sendByeBye()
+            sendDisconnectSignal()
+            // Wait slightly for the signal to leave the buffer
+            try { Thread.sleep(150) } catch (e: Exception) {}
         }
         isRunning = false
         try { serverSocket?.close() } catch (e: Exception) {}

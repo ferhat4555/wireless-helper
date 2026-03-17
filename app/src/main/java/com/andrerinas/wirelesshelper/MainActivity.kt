@@ -557,6 +557,25 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         handler.post(statusPoller)
         checkBatteryOptimization()
+        checkOverlayPermission()
+    }
+
+    private fun checkOverlayPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!android.provider.Settings.canDrawOverlays(this)) {
+                MaterialAlertDialogBuilder(this, R.style.DarkAlertDialog)
+                    .setTitle(R.string.overlay_perm_title)
+                    .setMessage(R.string.overlay_perm_msg)
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.overlay_perm_button) { _, _ ->
+                        val intent = Intent(android.provider.Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
+                            data = android.net.Uri.parse("package:$packageName")
+                        }
+                        startActivity(intent)
+                    }
+                    .show()
+            }
+        }
     }
 
     private fun checkBatteryOptimization() {

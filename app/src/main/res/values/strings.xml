@@ -39,6 +39,10 @@
     <string name="battery_opt_title">Battery Optimization detected</string>
     <string name="battery_opt_msg">To allow Auto-start on WiFi/Bluetooth, please set this app to \'Unrestricted\' in battery settings.</string>
     
+    <string name="overlay_perm_title">Background Start Blocked</string>
+    <string name="overlay_perm_msg">Modern Android versions block background starts. To enable automatic connection, please allow \'Display over other apps\' in system settings.</string>
+    <string name="overlay_perm_button">Grant Permission</string>
+
     <string name="not_set">Not set</string>
     
     <string name="logs_label">Logs:</string>

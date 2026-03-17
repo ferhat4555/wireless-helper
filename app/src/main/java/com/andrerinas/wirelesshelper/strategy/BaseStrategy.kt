@@ -7,6 +7,7 @@ import android.net.Network
 import android.os.Build
 import android.os.Parcelable
 import android.util.Log
+import com.andrerinas.wirelesshelper.TransparentTriggerActivity
 import com.andrerinas.wirelesshelper.connection.AapProxy
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -107,28 +108,13 @@ abstract class BaseStrategy(protected val context: Context, private val scope: C
 
                 Log.i(TAG, "Firing Intent. Host=127.0.0.1, Port=$localPort, Network=$targetNetwork")
                 
-                // 1. Send internal broadcast. If TransparentTriggerActivity is active, it will pick this up
-                // and fire the AA intent from the foreground to bypass security restrictions.
-                val broadcastIntent = Intent(ACTION_TRIGGER_INTENT).apply {
+                // Start our transparent activity to "surface" the app. 
+                // This allows us to bypass Background Activity Launch (BAL) restrictions on Android 14+.
+                val triggerIntent = Intent(context, TransparentTriggerActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_ANIMATION)
                     putExtra("intent", intent)
-                    setPackage(context.packageName)
                 }
-                context.sendBroadcast(broadcastIntent)
-
-                // 2. Direct Start (Fallback if activity isn't active or for manual starts)
-                try {
-                    context.startActivity(intent)
-                } catch (e: android.content.ActivityNotFoundException) {
-                    Log.w(TAG, "Legacy activity not found. Trying minimal broadcast fallback for AA 16.4+.")
-                    val receiverIntent = Intent().apply {
-                        setClassName("com.google.android.projection.gearhead", "com.google.android.apps.auto.wireless.setup.receiver.WirelessStartupReceiver")
-                        action = "com.google.android.apps.auto.wireless.setup.receiver.wirelessstartup.START"
-                        putExtra("ip_address", "127.0.0.1")
-                        putExtra("projection_port", localPort)
-                        addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
-                    }
-                    context.sendBroadcast(receiverIntent)
-                }
+                context.startActivity(triggerIntent)
 
                 // The lock stays active until proxy confirms connection or timeout
                 delay(15000) 

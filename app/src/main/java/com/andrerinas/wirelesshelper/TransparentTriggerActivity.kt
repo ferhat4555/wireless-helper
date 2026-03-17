@@ -1,60 +1,60 @@
 package com.andrerinas.wirelesshelper
 
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.andrerinas.wirelesshelper.strategy.BaseStrategy
 
+/**
+ * A transparent activity that surfaces the app to the foreground.
+ * This is required to bypass "Background Activity Launch" (BAL) restrictions
+ * introduced in modern Android versions (14+ / SDK 36).
+ */
 class TransparentTriggerActivity : AppCompatActivity() {
 
-    private val receiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            if (intent.action == BaseStrategy.ACTION_TRIGGER_INTENT) {
-                val targetIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    intent.getParcelableExtra("intent", Intent::class.java)
-                } else {
-                    @Suppress("DEPRECATION")
-                    intent.getParcelableExtra("intent")
-                }
-                
-                targetIntent?.let {
-                    startActivity(it)
-                }
-                finish()
-            }
-        }
-    }
+    private val TAG = "HUREV_TRIGGER"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Invisible activity
+        
+        // Make activity invisible
         window.setBackgroundDrawableResource(android.R.color.transparent)
         
-        val serviceIntent = Intent(this, WirelessHelperService::class.java).apply {
-            action = WirelessHelperService.ACTION_START
-        }
-        
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(serviceIntent)
+        val targetIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra("intent", Intent::class.java)
         } else {
-            startService(serviceIntent)
+            @Suppress("DEPRECATION")
+            intent.getParcelableExtra("intent")
         }
 
-        ContextCompat.registerReceiver(this, receiver, IntentFilter(BaseStrategy.ACTION_TRIGGER_INTENT), ContextCompat.RECEIVER_NOT_EXPORTED)
-        
-        // Safety timeout: if nothing happens in 20s, close
-        android.os.Handler(mainLooper).postDelayed({
-            if (!isFinishing) finish()
-        }, 20000)
-    }
+        if (targetIntent != null) {
+            Log.i(TAG, "TransparentTriggerActivity in foreground. Launching AA intent...")
+            try {
+                startActivity(targetIntent)
+            } catch (e: android.content.ActivityNotFoundException) {
+                Log.w(TAG, "Legacy activity not found. Trying minimal broadcast fallback for AA 16.4+.")
+                
+                // Read params from the failed intent to build the broadcast
+                val port = targetIntent.getIntExtra("PARAM_SERVICE_PORT", 5288)
+                
+                val receiverIntent = Intent().apply {
+                    setClassName("com.google.android.projection.gearhead", "com.google.android.apps.auto.wireless.setup.receiver.WirelessStartupReceiver")
+                    action = "com.google.android.apps.auto.wireless.setup.receiver.wirelessstartup.START"
+                    putExtra("ip_address", "127.0.0.1")
+                    putExtra("projection_port", port)
+                    addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
+                }
+                sendBroadcast(receiverIntent)
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to launch AA from foreground: ${e.message}")
+            }
+        } else {
+            Log.w(TAG, "No target intent provided to TransparentTriggerActivity.")
+        }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        try { unregisterReceiver(receiver) } catch (e: Exception) {}
+        // Close the activity immediately after firing the trigger
+        finish()
     }
 }
