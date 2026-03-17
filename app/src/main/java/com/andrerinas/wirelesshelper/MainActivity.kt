@@ -248,17 +248,8 @@ class MainActivity : AppCompatActivity() {
             showBluetoothDeviceSelector()
         }
 
-        layoutBtAutoReconnect.setOnClickListener {
-            val newValue = !switchBtAutoReconnect.isChecked
-            switchBtAutoReconnect.isChecked = newValue
-            getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE).edit { putBoolean("bt_auto_reconnect", newValue) }
-        }
-
-        layoutBtDisconnectStop.setOnClickListener {
-            val newValue = !switchBtDisconnectStop.isChecked
-            switchBtDisconnectStop.isChecked = newValue
-            getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE).edit { putBoolean("bt_disconnect_stop", newValue) }
-        }
+        setupSwitchSetting(layoutBtAutoReconnect, switchBtAutoReconnect, "bt_auto_reconnect")
+        setupSwitchSetting(layoutBtDisconnectStop, switchBtDisconnectStop, "bt_disconnect_stop")
 
         layoutWifiNetwork.setOnClickListener {
             showWifiSelector()
@@ -434,6 +425,15 @@ class MainActivity : AppCompatActivity() {
             }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
+    }
+
+    private fun setupSwitchSetting(layout: View, switch: androidx.appcompat.widget.SwitchCompat, prefKey: String) {
+        val prefs = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
+        layout.setOnClickListener {
+            val newValue = !switch.isChecked
+            switch.isChecked = newValue
+            prefs.edit { putBoolean(prefKey, newValue) }
+        }
     }
 
     private fun restoreState() {

@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothDevice
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.util.Log
 import androidx.core.content.ContextCompat
 
@@ -20,9 +21,14 @@ class AutoStartReceiver : BroadcastReceiver() {
         if (autoStartMode == 0) return
 
         val targetMac = prefs.getString("auto_start_bt_mac", null)
+        val device = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
+        }
 
         if (action == BluetoothDevice.ACTION_ACL_CONNECTED) {
-            val device = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
             Log.i(TAG, "BT Device connected: ${device?.name} (${device?.address})")
             
             if (device?.address == targetMac) {
@@ -34,7 +40,6 @@ class AutoStartReceiver : BroadcastReceiver() {
                 }
             }
         } else if (action == BluetoothDevice.ACTION_ACL_DISCONNECTED) {
-            val device = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
             Log.i(TAG, "BT Device disconnected: ${device?.name} (${device?.address})")
 
             if (device?.address == targetMac) {

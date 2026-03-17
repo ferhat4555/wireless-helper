@@ -6,6 +6,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
+import android.bluetooth.BluetoothDevice
 import android.content.Context
 import android.content.Intent
 import android.net.wifi.WifiManager
@@ -122,24 +123,20 @@ class WirelessHelperService : Service(), BaseStrategy.StateListener {
             val bm = getSystemService(Context.BLUETOOTH_SERVICE) as android.bluetooth.BluetoothManager
             val adapter = bm.adapter ?: return false
             
-            // Check common profiles (A2DP for music, HEADSET for calls)
-            val a2dp = adapter.getProfileConnectionState(android.bluetooth.BluetoothProfile.A2DP)
-            val hfp = adapter.getProfileConnectionState(android.bluetooth.BluetoothProfile.HEADSET)
+            val device = adapter.getRemoteDevice(mac) ?: return false
             
-            if (a2dp != android.bluetooth.BluetoothProfile.STATE_CONNECTED && 
-                hfp != android.bluetooth.BluetoothProfile.STATE_CONNECTED) {
-                return false
+            // Use reflection to access hidden 'isConnected' method for precise per-device status.
+            // Suggested by Gemini Code Assist to fix incorrect profile-based detection.
+            return try {
+                val isConnectedMethod = device.javaClass.getMethod("isConnected")
+                isConnectedMethod.invoke(device) as? Boolean ?: false
+            } catch (e: Exception) {
+                // Fallback: check profile connection if reflection fails
+                val a2dp = adapter.getProfileConnectionState(android.bluetooth.BluetoothProfile.A2DP)
+                val hfp = adapter.getProfileConnectionState(android.bluetooth.BluetoothProfile.HEADSET)
+                a2dp == android.bluetooth.BluetoothProfile.STATE_CONNECTED || 
+                hfp == android.bluetooth.BluetoothProfile.STATE_CONNECTED
             }
-
-            // More precise check: is OUR specific device connected?
-            // Since we can't easily get the list of connected devices without a listener or permissions,
-            // the profile state is a good indicator. If we want to be 100% sure:
-            val bondedDevices = adapter.bondedDevices
-            val device = bondedDevices.find { it.address == mac } ?: return false
-            
-            // ACL connection is usually what we want
-            // For now, if the profile is connected, we assume it's our car
-            return true 
         } catch (e: Exception) {
             return false
         }
