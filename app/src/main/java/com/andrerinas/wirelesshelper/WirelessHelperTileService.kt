@@ -1,6 +1,7 @@
 package com.andrerinas.wirelesshelper
 
 import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.service.quicksettings.Tile
@@ -26,7 +27,7 @@ class WirelessHelperTileService : TileService() {
             }
             startService(serviceIntent)
         } else {
-            val prefs = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
+            val prefs = getSharedPreferences("WirelessHelperPrefs", MODE_PRIVATE)
             val currentMode = prefs.getInt("connection_mode", 0)
 
             // Check if Wi-Fi is enabled before starting the service via Quick Settings Tile
