@@ -34,8 +34,10 @@ class AutoStartReceiver : BroadcastReceiver() {
             if (device?.address == targetMac) {
                 Log.i(TAG, "MATCH! Checking Wi-Fi state before starting service...")
                 
-                // Wrap the service start logic to ensure Wi-Fi is enabled
-                WifiNotificationHelper.checkWifiAndConnect(context) {
+                val currentMode = prefs.getInt("connection_mode", 0)
+
+                // Wrap the service start logic to ensure Wi-Fi is enabled, ignoring if Hotspot
+                WifiNotificationHelper.checkWifiAndConnect(context, connectionMode = currentMode) {
                     startService(context)
                 }
             }
