@@ -81,6 +81,7 @@
     <string name="notif_disconnected">Android Auto rozłączone</string>
     <string name="notif_stop">Zatrzymaj</string>
     <string name="notif_channel_name">Wireless Helper</string>
+    <string name="state_off">Wyłączone</string>
     <string name="connected">Połączono</string>
 
     <!-- About Dialog -->

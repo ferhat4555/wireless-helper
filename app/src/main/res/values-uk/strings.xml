@@ -81,6 +81,7 @@
     <string name="notif_disconnected">Android Auto відключено</string>
     <string name="notif_stop">Зупинити</string>
     <string name="notif_channel_name">Wireless Helper</string>
+    <string name="state_off">Вимкнено</string>
     <string name="connected">Підключено</string>
 
     <!-- About Dialog -->

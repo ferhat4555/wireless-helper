@@ -81,6 +81,7 @@
     <string name="notif_disconnected">Android Auto lekapcsolva</string>
     <string name="notif_stop">Leállítás</string>
     <string name="notif_channel_name">Wireless Helper</string>
+    <string name="state_off">Ki</string>
     <string name="connected">Csatlakozva</string>
 
     <!-- About Dialog -->

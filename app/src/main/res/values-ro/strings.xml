@@ -81,6 +81,7 @@
     <string name="notif_disconnected">Android Auto deconectat</string>
     <string name="notif_stop">Oprire</string>
     <string name="notif_channel_name">Wireless Helper</string>
+    <string name="state_off">Oprit</string>
     <string name="connected">Conectat</string>
 
     <!-- About Dialog -->
