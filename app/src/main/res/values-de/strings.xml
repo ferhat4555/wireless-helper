@@ -4,10 +4,10 @@
     <string name="stop_service">Suche stoppen</string>
     
     <string name="connection_mode_label">Verbindungsmodus</string>
-    <string name="mode_nsd">Gemeinsames WLAN (NSD)</string>
-    <string name="mode_hotspot_phone">Handy-Hotspot (NSD + Fake Network)</string>
-    <string name="mode_passive">Tablet-Hotspot (Passiv)</string>
-    <string name="mode_wifi_direct">Wi-Fi Direct (Experimentell)</string>
+    <string name="mode_nsd">Gemeinsames WLAN</string>
+    <string name="mode_hotspot_phone">Handy-Hotspot</string>
+    <string name="mode_passive">Tablet-Hotspot</string>
+    <string name="mode_wifi_direct">Wi-Fi Direct</string>
     
     <string name="auto_start_label">Dienst automatisch starten</string>
     <string name="auto_start_no">Nein (Manuell)</string>
@@ -15,6 +15,7 @@
     <string name="auto_start_wifi">Bei spezifischer WLAN-Verbindung</string>
     
     <string name="bt_device_label">Bluetooth-Gerät</string>
+    <string name="bt_devices_selected">Geräte ausgewählt</string>
     <string name="bt_auto_reconnect_title">Autom. Wiederverbinden</string>
     <string name="bt_auto_reconnect_desc">Versucht die Sitzung neu zu starten, wenn die Verbindung abbricht, aber Bluetooth noch verbunden ist.</string>
     <string name="bt_disconnect_stop_title">Stoppen bei BT-Verlust</string>

@@ -31,12 +31,12 @@ Wireless Helper supports remote control via Android Intents and App Shortcuts.
 - **Stop Search:** `wirelesshelper://stop`
 
 ### Supported Modes
-| Mode ID | Description |
-| :--- | :--- |
-| `nsd` | Shared Wi-Fi (Auto-search) |
+| Mode ID | Description        |
+| :--- |:-------------------|
+| `nsd` | Shared Wi-Fi       |
 | `phone-hotspot` | Phone Hotspot mode |
-| `tablet-hotspot` | Tablet Hotspot (Passive) |
-| `wifi-direct` | Wi-Fi Direct (Experimental) |
+| `tablet-hotspot` | Tablet Hotspot     |
+| `wifi-direct` | Wi-Fi Direct       |
 
 ### ADB Examples
 ```bash

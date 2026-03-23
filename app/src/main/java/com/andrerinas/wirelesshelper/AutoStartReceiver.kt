@@ -20,7 +20,9 @@ class AutoStartReceiver : BroadcastReceiver() {
 
         if (autoStartMode == 0) return
 
-        val targetMac = prefs.getString("auto_start_bt_mac", null)
+        val targetMacs = prefs.getStringSet("auto_start_bt_macs", emptySet()) ?: emptySet()
+        val legacyTargetMac = prefs.getString("auto_start_bt_mac", null)
+
         val device = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java)
         } else {
@@ -28,23 +30,24 @@ class AutoStartReceiver : BroadcastReceiver() {
             intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
         }
 
-        if (action == BluetoothDevice.ACTION_ACL_CONNECTED) {
-            Log.i(TAG, "BT Device connected: ${device?.name} (${device?.address})")
-            
-            if (device?.address == targetMac) {
-                Log.i(TAG, "MATCH! Checking Wi-Fi state before starting service...")
-                
-                val currentMode = prefs.getInt("connection_mode", 0)
+        val deviceAddress = device?.address ?: return
+        val isTarget = targetMacs.contains(deviceAddress) || deviceAddress == legacyTargetMac
 
-                // Wrap the service start logic to ensure Wi-Fi is enabled, ignoring if Hotspot
-                WifiNotificationHelper.checkWifiAndConnect(context, connectionMode = currentMode) {
+        if (action == BluetoothDevice.ACTION_ACL_CONNECTED) {
+            Log.i(TAG, "BT Device connected: ${device.name} ($deviceAddress)")
+
+            if (isTarget) {
+                Log.i(TAG, "MATCH! Checking Wi-Fi state before starting service...")
+
+                // Wrap the service start logic to ensure Wi-Fi is enabled
+                WifiNotificationHelper.checkWifiAndConnect(context) {
                     startService(context)
                 }
             }
         } else if (action == BluetoothDevice.ACTION_ACL_DISCONNECTED) {
-            Log.i(TAG, "BT Device disconnected: ${device?.name} (${device?.address})")
+            Log.i(TAG, "BT Device disconnected: ${device.name} ($deviceAddress)")
 
-            if (device?.address == targetMac) {
+            if (isTarget) {
                 val stopOnDisconnect = prefs.getBoolean("bt_disconnect_stop", false)
                 if (stopOnDisconnect) {
                     Log.i(TAG, "MATCH! Stopping service as requested by settings...")

@@ -4,9 +4,9 @@
     <string name="stop_service">Detener búsqueda</string>
     
     <string name="connection_mode_label">Modo de conexión</string>
-    <string name="mode_nsd">Wi-Fi compartido (NSD)</string>
-    <string name="mode_hotspot_phone">Punto de acceso (NSD + Red falsa)</string>
-    <string name="mode_passive">Punto de acceso tablet (Pasivo)</string>
+    <string name="mode_nsd">Wi-Fi compartido</string>
+    <string name="mode_hotspot_phone">Punto de acceso</string>
+    <string name="mode_passive">Punto de acceso tablet</string>
     <string name="mode_wifi_direct">Wi-Fi Directo</string>
     
     <string name="auto_start_label">Inicio automático del servicio</string>

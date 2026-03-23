@@ -414,22 +414,48 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val deviceNames = bondedDevices.map { it.name ?: "Unknown Device" }.toTypedArray()
+        val prefs = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
+        val selectedMacs = prefs.getStringSet("auto_start_bt_macs", emptySet())?.toMutableSet() ?: mutableSetOf()
         
+        val deviceNames = bondedDevices.map { it.name ?: "Unknown Device" }.toTypedArray()
+        val checkedItems = bondedDevices.map { selectedMacs.contains(it.address) }.toBooleanArray()
+
         MaterialAlertDialogBuilder(this, R.style.DarkAlertDialog)
             .setTitle(R.string.select_bt_device)
-            .setItems(deviceNames) { _, which ->
+            .setMultiChoiceItems(deviceNames, checkedItems) { _, which, isChecked ->
                 val device = bondedDevices[which]
-                val prefs = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
-                prefs.edit { 
-                    putString("auto_start_bt_mac", device.address)
-                    putString("auto_start_bt_name", device.name)
+                if (isChecked) {
+                    selectedMacs.add(device.address)
+                } else {
+                    selectedMacs.remove(device.address)
                 }
-                tvBluetoothDeviceValue.text = device.name
-                Toast.makeText(this, getString(R.string.auto_start_linked, device.name), Toast.LENGTH_SHORT).show()
+            }
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                prefs.edit { 
+                    putStringSet("auto_start_bt_macs", selectedMacs)
+                }
+                updateBluetoothValueDisplay()
             }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
+    }
+
+    private fun updateBluetoothValueDisplay() {
+        val prefs = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
+        val selectedMacs = prefs.getStringSet("auto_start_bt_macs", emptySet()) ?: emptySet()
+        
+        if (selectedMacs.isEmpty()) {
+            tvBluetoothDeviceValue.text = getString(R.string.not_set)
+        } else {
+            tvBluetoothDeviceValue.text = if (selectedMacs.size == 1) {
+                // Try to find the name if only one is selected
+                val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as android.bluetooth.BluetoothManager
+                val device = bluetoothManager.adapter.getRemoteDevice(selectedMacs.first())
+                device.name ?: selectedMacs.first()
+            } else {
+                "${selectedMacs.size} ${getString(R.string.bt_devices_selected)}"
+            }
+        }
     }
 
     private fun setupSwitchSetting(layout: View, switch: androidx.appcompat.widget.SwitchCompat, prefKey: String) {
@@ -443,15 +469,34 @@ class MainActivity : AppCompatActivity() {
 
     private fun restoreState() {
         val prefs = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
-        
+
+        migrateSettings(prefs)
+
         val connMode = prefs.getInt("connection_mode", 0)
         tvConnectionModeValue.text = connectionModes.getOrElse(connMode) { connectionModes[0] }
-        updateModeSpecificUI(connMode)
+    ...
+    private fun migrateSettings(prefs: android.content.SharedPreferences) {
+        val oldMac = prefs.getString("auto_start_bt_mac", null)
+        if (!oldMac.isNullOrEmpty()) {
+            val currentSet = prefs.getStringSet("auto_start_bt_macs", emptySet()) ?: emptySet()
+            if (!currentSet.contains(oldMac)) {
+                val newSet = currentSet.toMutableSet()
+                newSet.add(oldMac)
+                prefs.edit { 
+                    putStringSet("auto_start_bt_macs", newSet)
+                    // Clear old key so migration only runs once
+                    remove("auto_start_bt_mac")
+                    remove("auto_start_bt_name")
+                }
+            }
+        }
+    }
 
+    private fun updateModeSpecificUI(mode: Int) {
         val autoMode = prefs.getInt("auto_start_mode", 0)
         updateAutoStartUI(autoMode)
         
-        tvBluetoothDeviceValue.text = prefs.getString("auto_start_bt_name", getString(R.string.not_set))
+        updateBluetoothValueDisplay()
         switchBtAutoReconnect.isChecked = prefs.getBoolean("bt_auto_reconnect", false)
         switchBtDisconnectStop.isChecked = prefs.getBoolean("bt_disconnect_stop", false)
         tvWifiNetworkValue.text = prefs.getString("auto_start_wifi_ssid", getString(R.string.not_set))

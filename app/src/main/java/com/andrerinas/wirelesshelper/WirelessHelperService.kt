@@ -102,10 +102,14 @@ class WirelessHelperService : Service(), BaseStrategy.StateListener {
 
         val prefs = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
         val autoReconnect = prefs.getBoolean("bt_auto_reconnect", false)
-        val targetMac = prefs.getString("auto_start_bt_mac", null)
+        val targetMacs = prefs.getStringSet("auto_start_bt_macs", emptySet()) ?: emptySet()
+        val legacyTargetMac = prefs.getString("auto_start_bt_mac", null)
 
-        if (autoReconnect && targetMac != null && isBluetoothDeviceConnected(targetMac)) {
-            Log.i(TAG, "Bluetooth still connected and auto-reconnect enabled. Restarting strategy...")
+        val anyTargetConnected = targetMacs.any { isBluetoothDeviceConnected(it) } || 
+                                (legacyTargetMac != null && isBluetoothDeviceConnected(legacyTargetMac))
+
+        if (autoReconnect && anyTargetConnected) {
+            Log.i(TAG, "Target Bluetooth still connected and auto-reconnect enabled. Restarting strategy...")
             updateNotification(getString(R.string.notif_searching))
             serviceScope.launch {
                 delay(3000) // Puffer vor Neustart

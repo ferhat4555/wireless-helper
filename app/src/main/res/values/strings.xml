@@ -7,7 +7,7 @@
     <string name="mode_nsd">Shared Wi-Fi (NSD)</string>
     <string name="mode_hotspot_phone">Phone Hotspot (NSD + Fake Network)</string>
     <string name="mode_passive">Tablet Hotspot (Passive)</string>
-    <string name="mode_wifi_direct">Wi-Fi Direct (Experimental)</string>
+    <string name="mode_wifi_direct">Wi-Fi Direct</string>
     
     <string name="auto_start_label">Auto Start Service</string>
     <string name="auto_start_no">No (Manual)</string>
@@ -15,6 +15,7 @@
     <string name="auto_start_wifi">On Specific Wi-Fi Connection</string>
     
     <string name="bt_device_label">Bluetooth Device</string>
+    <string name="bt_devices_selected">devices selected</string>
     <string name="bt_auto_reconnect_title">Try to auto reconnect</string>
     <string name="bt_auto_reconnect_desc">Attempt to restart the session if the connection drops while Bluetooth is still connected.</string>
     <string name="bt_disconnect_stop_title">Stop on BT disconnect</string>

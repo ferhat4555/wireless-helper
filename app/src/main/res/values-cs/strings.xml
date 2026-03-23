@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Wireless Helper</string>
+    <string name="start_service">Spustit Android Auto</string>
+    <string name="stop_service">Zastavit vyhledávání</string>
+    
+    <string name="connection_mode_label">Režim připojení</string>
+    <string name="mode_nsd">Sdílená Wi-Fi</string>
+    <string name="mode_hotspot_phone">Hotspot telefonu</string>
+    <string name="mode_passive">Hotspot tabletu</string>
+    <string name="mode_wifi_direct">Wi-Fi Direct</string>
+    
+    <string name="auto_start_label">Automatické spuštění služby</string>
+    <string name="auto_start_no">Ne (Ručně)</string>
+    <string name="auto_start_bt">Při připojení Bluetooth</string>
+    <string name="auto_start_wifi">Při připojení ke konkrétní Wi-Fi</string>
+    
+    <string name="bt_device_label">Zařízení Bluetooth</string>
+    <string name="bt_devices_selected">vybraná zařízení</string>
+    <string name="bt_auto_reconnect_title">Zkusit automatické znovupřipojení</string>
+    <string name="bt_auto_reconnect_desc">Pokusit se restartovat relaci, pokud připojení vypadne, zatímco je Bluetooth stále připojen.</string>
+    <string name="bt_disconnect_stop_title">Zastavit při odpojení BT</string>
+    <string name="bt_disconnect_stop_desc">Automaticky zastavit službu, když se odpojí Bluetooth v autě.</string>
+    <string name="wifi_ssid_label">Síť Wi-Fi (SSID)</string>
+    <string name="wifi_connected_network">Připojená síť Wi-Fi</string>
+    <string name="wifi_ssid_hint">Zadejte SSID Wi-Fi</string>
+    <string name="wifi_ssid_dialog_title">Automatické spuštění Wi-Fi</string>
+    <string name="wifi_ssid_dialog_msg">Služba se spustí automaticky po připojení k této síti:</string>
+    <string name="wifi_ssid_save">Uložit</string>
+    <string name="wifi_ssid_permissions_needed">Vyžádat oprávnění</string>
+    
+    <string name="wifi_background_location_title">Vyžadována poloha na pozadí</string>
+    <string name="wifi_background_location_msg">Pro detekci Wi-Fi, když je aplikace zavřená, nastavte oprávnění k poloze na „Vždy povolit“ v nastavení Androidu.</string>
+    <string name="wifi_background_location_button">Nastavení</string>
+
+    <string name="wifi_direct_name_label">Název zařízení Wi-Fi Direct</string>
+    <string name="wifi_direct_name_hint">Zadejte název zařízení (např. AndroidAuto-Unit)</string>
+    <string name="wifi_direct_name_dialog_title">Automatické připojení Wi-Fi Direct</string>
+    <string name="wifi_direct_name_dialog_msg">Zadejte název zařízení Wi-Fi Direct, ke kterému se chcete připojit. Aplikace se po nalezení automaticky připojí.</string>
+
+    <string name="battery_opt_title">Detekována optimalizace baterie</string>
+    <string name="battery_opt_msg">Chcete-li povolit automatické spuštění na Wi-Fi/Bluetooth, nastavte tuto aplikaci v nastavení baterie na „Bez omezení“.</string>
+    
+    <string name="overlay_perm_title">Spuštění na pozadí zablokováno</string>
+    <string name="overlay_perm_msg">Moderní verze Androidu blokují spouštění na pozadí. Pro povolení automatického připojení povolte „Zobrazení přes ostatní aplikace“ v nastavení systému.</string>
+    <string name="overlay_perm_button">Udělit oprávnění</string>
+
+    <string name="not_set">Nenastaveno</string>
+    
+    <string name="logs_label">Protokoly:</string>
+    <string name="category_info">INFO</string>
+    <string name="settings_header">NASTAVENÍ</string>
+    <string name="version">Verze</string>
+    <string name="about">O aplikaci a podpora</string>
+    <string name="about_description">Lehký spouštěč pro Headunit Revived</string>
+
+    <!-- Language -->
+    <string name="language_label">Jazyk</string>
+    <string name="language_system_default">Výchozí systémový</string>
+    <string name="language_english">English</string>
+    <string name="language_portuguese">Português (Brasil)</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_russian">Русский</string>
+    <string name="language_arabic">العربية</string>
+    <string name="language_spanish">Español</string>
+
+    <!-- Notifications & Service -->
+    <string name="notif_searching">Vyhledávání jednotky…</string>
+    <string name="notif_connected">Připojeno k Android Auto</string>
+    <string name="notif_disconnected">Android Auto odpojeno</string>
+    <string name="notif_stop">Zastavit</string>
+    <string name="notif_channel_name">Wireless Helper</string>
+    <string name="connected">Připojeno</string>
+
+    <!-- About Dialog -->
+    <string name="about_dialog_body">Wireless Helper je spouštěcí aplikace pro Headunit Revived.\n\nVyvinul André Rinas\n© 2026</string>
+
+    <!-- Bluetooth -->
+    <string name="no_paired_devices">Nebyla nalezena žádná spárovaná zařízení Bluetooth</string>
+    <string name="select_bt_device">Vyberte zařízení Bluetooth</string>
+    <string name="auto_start_linked">Automatické spuštění propojeno s %s</string>
+
+    <string name="shortcut_start_title">Spustit vyhledávání</string>
+    <string name="shortcut_start_desc">Spustit vyhledávání pro Android Auto</string>
+    <string name="shortcut_stop_title">Zastavit vyhledávání</string>
+    <string name="shortcut_stop_desc">Zastavit aktivní vyhledávání</string>
+
+    <string name="channel_name_alerts">Upozornění na připojení</string>
+    <string name="notification_wifi_off_title">Wi-Fi je vypnutá!</string>
+    <string name="notification_wifi_off_text">Headunit Revived potřebuje Wi-Fi k připojení.</string>
+    <string name="action_turn_on_wifi">ZAPNOUT WI-FI</string>
+</resources>

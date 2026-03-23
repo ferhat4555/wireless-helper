@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Wireless Helper</string>
+    <string name="start_service">Android Auto starten</string>
+    <string name="stop_service">Stoppen met zoeken</string>
+    
+    <string name="connection_mode_label">Verbindingsmodus</string>
+    <string name="mode_nsd">Gedeelde Wi-Fi</string>
+    <string name="mode_hotspot_phone">Telefoon Hotspot</string>
+    <string name="mode_passive">Tablet Hotspot</string>
+    <string name="mode_wifi_direct">Wi-Fi Direct</string>
+    
+    <string name="auto_start_label">Service automatisch starten</string>
+    <string name="auto_start_no">Nee (Handmatig)</string>
+    <string name="auto_start_bt">Bij Bluetooth-verbinding</string>
+    <string name="auto_start_wifi">Bij specifieke Wi-Fi-verbinding</string>
+    
+    <string name="bt_device_label">Bluetooth-apparaat</string>
+    <string name="bt_devices_selected">apparaten geselecteerd</string>
+    <string name="bt_auto_reconnect_title">Automatisch opnieuw verbinden</string>
+    <string name="bt_auto_reconnect_desc">Poging om de sessie te herstarten als de verbinding wegvalt terwijl Bluetooth nog steeds verbonden is.</string>
+    <string name="bt_disconnect_stop_title">Stoppen bij BT-verbinding verbroken</string>
+    <string name="bt_disconnect_stop_desc">De service automatisch stoppen wanneer de Bluetooth van de auto wordt verbroken.</string>
+    <string name="wifi_ssid_label">Wi-Fi-netwerk (SSID)</string>
+    <string name="wifi_connected_network">Verbonden Wi-Fi-netwerk</string>
+    <string name="wifi_ssid_hint">Voer Wi-Fi-SSID in</string>
+    <string name="wifi_ssid_dialog_title">Wi-Fi automatisch starten</string>
+    <string name="wifi_ssid_dialog_msg">Service start automatisch bij verbinding met dit netwerk:</string>
+    <string name="wifi_ssid_save">Opslaan</string>
+    <string name="wifi_ssid_permissions_needed">Machtigingen aanvragen</string>
+    
+    <string name="wifi_background_location_title">Locatie op de achtergrond nodig</string>
+    <string name="wifi_background_location_msg">Om Wi-Fi te detecteren terwijl de app gesloten is, stelt u de locatiemachtiging in op \'Altijd toestaan\' in de Android-instellingen.</string>
+    <string name="wifi_background_location_button">Instellingen</string>
+
+    <string name="wifi_direct_name_label">Naam Wi-Fi Direct-apparaat</string>
+    <string name="wifi_direct_name_hint">Voer apparaatnaam in (bijv. AndroidAuto-Unit)</string>
+    <string name="wifi_direct_name_dialog_title">Automatisch verbinden via Wi-Fi Direct</string>
+    <string name="wifi_direct_name_dialog_msg">Voer de naam in van het Wi-Fi Direct-apparaat waarmee u verbinding wilt maken. De app maakt automatisch verbinding zodra deze is gevonden.</string>
+
+    <string name="battery_opt_title">Batterij-optimalisatie gedetecteerd</string>
+    <string name="battery_opt_msg">Om automatisch starten via Wi-Fi/Bluetooth toe te staan, stelt u deze app in op \'Niet beperkt\' in de batterij-instellingen.</string>
+    
+    <string name="overlay_perm_title">Starten op de achtergrond geblokkeerd</string>
+    <string name="overlay_perm_msg">Moderne Android-versies blokkeren het starten op de achtergrond. Om automatisch verbinden in te schakelen, staat u \'Weergeven over andere apps\' toe in de systeeminstellingen.</string>
+    <string name="overlay_perm_button">Machtiging verlenen</string>
+
+    <string name="not_set">Niet ingesteld</string>
+    
+    <string name="logs_label">Logboeken:</string>
+    <string name="category_info">INFO</string>
+    <string name="settings_header">INSTELLINGEN</string>
+    <string name="version">Versie</string>
+    <string name="about">Over &amp; Ondersteuning</string>
+    <string name="about_description">Lichtgewicht trigger voor Headunit Revived</string>
+
+    <!-- Language -->
+    <string name="language_label">Taal</string>
+    <string name="language_system_default">Systeemstandaard</string>
+    <string name="language_english">English</string>
+    <string name="language_portuguese">Português (Brasil)</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_russian">Русский</string>
+    <string name="language_arabic">العربية</string>
+    <string name="language_spanish">Español</string>
+
+    <!-- Notifications & Service -->
+    <string name="notif_searching">Zoeken naar Headunit…</string>
+    <string name="notif_connected">Verbonden met Android Auto</string>
+    <string name="notif_disconnected">Android Auto verbinding verbroken</string>
+    <string name="notif_stop">Stoppen</string>
+    <string name="notif_channel_name">Wireless Helper</string>
+    <string name="connected">Verbonden</string>
+
+    <!-- About Dialog -->
+    <string name="about_dialog_body">Wireless Helper is een trigger-app voor Headunit Revived.\n\nOntwikkeld door André Rinas\n© 2026</string>
+
+    <!-- Bluetooth -->
+    <string name="no_paired_devices">Geen gekoppelde Bluetooth-apparaten gevonden</string>
+    <string name="select_bt_device">Bluetooth-apparaat selecteren</string>
+    <string name="auto_start_linked">Automatische start gekoppeld aan %s</string>
+
+    <string name="shortcut_start_title">Zoeken starten</string>
+    <string name="shortcut_start_desc">Zoeken naar Android Auto starten</string>
+    <string name="shortcut_stop_title">Stoppen met zoeken</string>
+    <string name="shortcut_stop_desc">De actieve zoekopdracht stoppen</string>
+
+    <string name="channel_name_alerts">Verbindingsmeldingen</string>
+    <string name="notification_wifi_off_title">Wi-Fi is uitgeschakeld!</string>
+    <string name="notification_wifi_off_text">Headunit Revived heeft Wi-Fi nodig om verbinding te maken.</string>
+    <string name="action_turn_on_wifi">ZET WI-FI AAN</string>
+</resources>

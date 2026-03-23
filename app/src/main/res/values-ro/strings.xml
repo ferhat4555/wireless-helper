@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Wireless Helper</string>
+    <string name="start_service">Pornire Android Auto</string>
+    <string name="stop_service">Oprire căutare</string>
+    
+    <string name="connection_mode_label">Mod conexiune</string>
+    <string name="mode_nsd">Wi-Fi partajat</string>
+    <string name="mode_hotspot_phone">Hotspot telefon</string>
+    <string name="mode_passive">Hotspot tabletă</string>
+    <string name="mode_wifi_direct">Wi-Fi Direct</string>
+    
+    <string name="auto_start_label">Pornire automată serviciu</string>
+    <string name="auto_start_no">Nu (Manual)</string>
+    <string name="auto_start_bt">La conectarea Bluetooth</string>
+    <string name="auto_start_wifi">La conectarea la un Wi-Fi specific</string>
+    
+    <string name="bt_device_label">Dispozitiv Bluetooth</string>
+    <string name="bt_devices_selected">dispozitive selectate</string>
+    <string name="bt_auto_reconnect_title">Încearcă reconectarea automată</string>
+    <string name="bt_auto_reconnect_desc">Încearcă să repornească sesiunea dacă conexiunea se întrerupe în timp ce Bluetooth-ul este încă conectat.</string>
+    <string name="bt_disconnect_stop_title">Oprire la deconectare BT</string>
+    <string name="bt_disconnect_stop_desc">Oprește automat serviciul atunci când Bluetooth-ul mașinii este deconectat.</string>
+    <string name="wifi_ssid_label">Rețea Wi-Fi (SSID)</string>
+    <string name="wifi_connected_network">Rețea Wi-Fi conectată</string>
+    <string name="wifi_ssid_hint">Introduceți SSID-ul Wi-Fi</string>
+    <string name="wifi_ssid_dialog_title">Pornire automată Wi-Fi</string>
+    <string name="wifi_ssid_dialog_msg">Serviciul va porni automat la conectarea la această rețea:</string>
+    <string name="wifi_ssid_save">Salvare</string>
+    <string name="wifi_ssid_permissions_needed">Solicitare permisiuni</string>
+    
+    <string name="wifi_background_location_title">Locație în fundal necesară</string>
+    <string name="wifi_background_location_msg">Pentru a detecta Wi-Fi-ul în timp ce aplicația este închisă, vă rugăm să setați permisiunea de locație pe „Permite tot timpul” în setările Android.</string>
+    <string name="wifi_background_location_button">Setări</string>
+
+    <string name="wifi_direct_name_label">Nume dispozitiv Wi-Fi Direct</string>
+    <string name="wifi_direct_name_hint">Introduceți numele dispozitivului (ex. AndroidAuto-Unit)</string>
+    <string name="wifi_direct_name_dialog_title">Conectare automată Wi-Fi Direct</string>
+    <string name="wifi_direct_name_dialog_msg">Introduceți numele dispozitivului Wi-Fi Direct la care doriți să vă conectați. Aplicația se va conecta automat odată ce acesta este găsit.</string>
+
+    <string name="battery_opt_title">Optimizare baterie detectată</string>
+    <string name="battery_opt_msg">Pentru a permite pornirea automată pe Wi-Fi/Bluetooth, vă rugăm să setați această aplicație pe „Fără restricții” în setările bateriei.</string>
+    
+    <string name="overlay_perm_title">Pornire în fundal blocată</string>
+    <string name="overlay_perm_msg">Versiunile moderne de Android blochează pornirea în fundal. Pentru a activa conexiunea automată, permiteți „Afișarea peste alte aplicații” în setările sistemului.</string>
+    <string name="overlay_perm_button">Acordare permisiune</string>
+
+    <string name="not_set">Nesetat</string>
+    
+    <string name="logs_label">Jurnale:</string>
+    <string name="category_info">INFO</string>
+    <string name="settings_header">SETĂRI</string>
+    <string name="version">Versiune</string>
+    <string name="about">Despre și Suport</string>
+    <string name="about_description">Lightweight trigger pentru Headunit Revived</string>
+
+    <!-- Language -->
+    <string name="language_label">Limbă</string>
+    <string name="language_system_default">Sistem implicit</string>
+    <string name="language_english">English</string>
+    <string name="language_portuguese">Português (Brasil)</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_russian">Русский</string>
+    <string name="language_arabic">العربية</string>
+    <string name="language_spanish">Español</string>
+
+    <!-- Notifications & Service -->
+    <string name="notif_searching">Căutare unitate…</string>
+    <string name="notif_connected">Conectat la Android Auto</string>
+    <string name="notif_disconnected">Android Auto deconectat</string>
+    <string name="notif_stop">Oprire</string>
+    <string name="notif_channel_name">Wireless Helper</string>
+    <string name="connected">Conectat</string>
+
+    <!-- About Dialog -->
+    <string name="about_dialog_body">Wireless Helper este o aplicație de activare pentru Headunit Revived.\n\nDezvoltată de André Rinas\n© 2026</string>
+
+    <!-- Bluetooth -->
+    <string name="no_paired_devices">Nu au fost găsite dispozitive Bluetooth asociate</string>
+    <string name="select_bt_device">Selectați dispozitivul Bluetooth</string>
+    <string name="auto_start_linked">Pornire automată legată de %s</string>
+
+    <string name="shortcut_start_title">Pornire căutare</string>
+    <string name="shortcut_start_desc">Pornire căutare pentru Android Auto</string>
+    <string name="shortcut_stop_title">Oprire căutare</string>
+    <string name="shortcut_stop_desc">Oprire căutare activă</string>
+
+    <string name="channel_name_alerts">Alerte conexiune</string>
+    <string name="notification_wifi_off_title">Wi-Fi este dezactivat!</string>
+    <string name="notification_wifi_off_text">Headunit Revived are nevoie de Wi-Fi pentru conectare.</string>
+    <string name="action_turn_on_wifi">PORNIRE WI-FI</string>
+</resources>

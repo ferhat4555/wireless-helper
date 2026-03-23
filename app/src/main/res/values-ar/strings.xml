@@ -4,10 +4,10 @@
     <string name="stop_service">إيقاف البحث</string>
 
     <string name="connection_mode_label">وضع الاتصال</string>
-    <string name="mode_nsd">واي فاي مشترك (NSD)</string>
-    <string name="mode_hotspot_phone">نقطة اتصال الهاتف (NSD + شبكة وهمية)</string>
-    <string name="mode_passive">نقطة اتصال الجهاز اللوحي (سلبي)</string>
-    <string name="mode_wifi_direct">Wi-Fi Direct (تجريبي)</string>
+    <string name="mode_nsd">واي فاي مشترك</string>
+    <string name="mode_hotspot_phone">نقطة اتصال الهاتف</string>
+    <string name="mode_passive">نقطة اتصال الجهاز اللوحي</string>
+    <string name="mode_wifi_direct">Wi-Fi Direct</string>
 
     <string name="auto_start_label">التشغيل التلقائي للخدمة</string>
     <string name="auto_start_no">لا (يدوي)</string>
@@ -15,6 +15,7 @@
     <string name="auto_start_wifi">عند الاتصال بشبكة واي فاي محددة</string>
 
     <string name="bt_device_label">جهاز بلوتوث</string>
+    <string name="bt_devices_selected">أجهزة مختارة</string>
     <string name="bt_auto_reconnect_title">محاولة إعادة الاتصال التلقائي</string>
     <string name="bt_auto_reconnect_desc">محاولة إعادة تشغيل الجلسة في حالة انقطاع الاتصال بينما لا يزال البلوتوث متصلاً.</string>
     <string name="bt_disconnect_stop_title">إيقاف عند فصل البلوتوث</string>

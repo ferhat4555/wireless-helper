@@ -7,7 +7,7 @@
     <string name="mode_nsd">Wi-Fi Tradicional</string>
     <string name="mode_hotspot_phone">Roteador do Celular</string>
     <string name="mode_passive">Roteador do Tablet/Multimidia</string>
-    <string name="mode_wifi_direct">Wi-Fi Direct (Experimental)</string>
+    <string name="mode_wifi_direct">Wi-Fi Direct</string>
     
     <string name="auto_start_label">Início Automático</string>
     <string name="auto_start_no">Não (Manual)</string>
@@ -15,6 +15,7 @@
     <string name="auto_start_wifi">Sim (WIFI)</string>
     
     <string name="bt_device_label">Dispositivo Bluetooth</string>
+    <string name="bt_devices_selected">dispositivos selecionados</string>
     <string name="bt_auto_reconnect_title">Tentar reconexão automática</string>
     <string name="bt_auto_reconnect_desc">Tenta reiniciar a sessão se a conexão cair enquanto o Bluetooth ainda estiver conectado.</string>
     <string name="bt_disconnect_stop_title">Parar ao desconectar BT</string>

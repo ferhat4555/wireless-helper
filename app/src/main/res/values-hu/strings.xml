@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Wireless Helper</string>
+    <string name="start_service">Android Auto indítása</string>
+    <string name="stop_service">Keresés leállítása</string>
+    
+    <string name="connection_mode_label">Csatlakozási mód</string>
+    <string name="mode_nsd">Osztott Wi-Fi (NSD)</string>
+    <string name="mode_hotspot_phone">Telefon Hotspot (NSD + Hamis hálózat)</string>
+    <string name="mode_passive">Tablet Hotspot (Passzív)</string>
+    <string name="mode_wifi_direct">Wi-Fi Direct (Kísérleti)</string>
+    
+    <string name="auto_start_label">Szolgáltatás automatikus indítása</string>
+    <string name="auto_start_no">Nem (Kézi)</string>
+    <string name="auto_start_bt">Bluetooth csatlakozáskor</string>
+    <string name="auto_start_wifi">Adott Wi-Fi csatlakozáskor</string>
+    
+    <string name="bt_device_label">Bluetooth eszköz</string>
+    <string name="bt_devices_selected">eszköz kiválasztva</string>
+    <string name="bt_auto_reconnect_title">Automatikus újracsatlakozás</string>
+    <string name="bt_auto_reconnect_desc">Kísérlet a munkamenet újraindítására, ha a kapcsolat megszakad, de a Bluetooth még csatlakozik.</string>
+    <string name="bt_disconnect_stop_title">Leállítás BT lekapcsolódáskor</string>
+    <string name="bt_disconnect_stop_desc">Automatikusan leállítja a szolgáltatást, ha az autó Bluetooth kapcsolata megszakad.</string>
+    <string name="wifi_ssid_label">Wi-Fi hálózat (SSID)</string>
+    <string name="wifi_connected_network">Csatlakoztatott Wi-Fi hálózat</string>
+    <string name="wifi_ssid_hint">Adja meg a Wi-Fi SSID-t</string>
+    <string name="wifi_ssid_dialog_title">Wi-Fi automatikus indítás</string>
+    <string name="wifi_ssid_dialog_msg">A szolgáltatás automatikusan elindul, ha ehhez a hálózathoz csatlakozik:</string>
+    <string name="wifi_ssid_save">Mentés</string>
+    <string name="wifi_ssid_permissions_needed">Engedélyek kérése</string>
+    
+    <string name="wifi_background_location_title">Háttérben futó helyadatok szükségesek</string>
+    <string name="wifi_background_location_msg">A Wi-Fi észleléséhez lezárt alkalmazás mellett, kérjük, állítsa a helymeghatározást „Mindig engedélyezve” állapotra az Android beállításaiban.</string>
+    <string name="wifi_background_location_button">Beállítások</string>
+
+    <string name="wifi_direct_name_label">Wi-Fi Direct eszköz neve</string>
+    <string name="wifi_direct_name_hint">Adja meg az eszköz nevét (pl. AndroidAuto-Unit)</string>
+    <string name="wifi_direct_name_dialog_title">Wi-Fi Direct automatikus csatlakozás</string>
+    <string name="wifi_direct_name_dialog_msg">Adja meg a Wi-Fi Direct eszköz nevét, amelyhez csatlakozni szeretne. Az alkalmazás automatikusan csatlakozik, amint megtalálja.</string>
+
+    <string name="battery_opt_title">Akkumulátor optimalizálás észlelve</string>
+    <string name="battery_opt_msg">A Wi-Fi/Bluetooth automatikus indításának engedélyezéséhez kérjük, állítsa az alkalmazást „Korlátozás nélkül” állapotra az akkumulátor beállításaiban.</string>
+    
+    <string name="overlay_perm_title">Háttérben történő indítás blokkolva</string>
+    <string name="overlay_perm_msg">A modern Android verziók blokkolják a háttérben történő indítást. Az automatikus csatlakozáshoz engedélyezze a „Megjelenítés más alkalmazások felett” opciót a rendszerbeállításokban.</string>
+    <string name="overlay_perm_button">Engedély megadása</string>
+
+    <string name="not_set">Nincs beállítva</string>
+    
+    <string name="logs_label">Naplók:</string>
+    <string name="category_info">INFÓ</string>
+    <string name="settings_header">BEÁLLÍTÁSOK</string>
+    <string name="version">Verzió</string>
+    <string name="about">Névjegy és támogatás</string>
+    <string name="about_description">Könnyű trigger a Headunit Revived-hoz</string>
+
+    <!-- Language -->
+    <string name="language_label">Nyelv</string>
+    <string name="language_system_default">Rendszer alapértelmezett</string>
+    <string name="language_english">English</string>
+    <string name="language_portuguese">Português (Brasil)</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_russian">Русский</string>
+    <string name="language_arabic">العربية</string>
+    <string name="language_spanish">Español</string>
+
+    <!-- Notifications & Service -->
+    <string name="notif_searching">Egység keresése…</string>
+    <string name="notif_connected">Csatlakozva az Android Auto-hoz</string>
+    <string name="notif_disconnected">Android Auto lekapcsolva</string>
+    <string name="notif_stop">Leállítás</string>
+    <string name="notif_channel_name">Wireless Helper</string>
+    <string name="connected">Csatlakozva</string>
+
+    <!-- About Dialog -->
+    <string name="about_dialog_body">A Wireless Helper egy indító alkalmazás a Headunit Revived-hoz.\n\nFejlesztette: André Rinas\n© 2026</string>
+
+    <!-- Bluetooth -->
+    <string name="no_paired_devices">Nem találhatók párosított Bluetooth eszközök</string>
+    <string name="select_bt_device">Válasszon Bluetooth eszközt</string>
+    <string name="auto_start_linked">Automatikus indítás összekapcsolva ezzel: %s</string>
+
+    <string name="shortcut_start_title">Keresés indítása</string>
+    <string name="shortcut_start_desc">Android Auto keresésének indítása</string>
+    <string name="shortcut_stop_title">Keresés leállítása</string>
+    <string name="shortcut_stop_desc">Aktív keresés leállítása</string>
+
+    <string name="channel_name_alerts">Csatlakozási riasztások</string>
+    <string name="notification_wifi_off_title">A Wi-Fi ki van kapcsolva!</string>
+    <string name="notification_wifi_off_text">A Headunit Revived-nak Wi-Fi-re van szüksége a csatlakozáshoz.</string>
+    <string name="action_turn_on_wifi">WI-FI BEKAPCSOLÁSA</string>
+</resources>
