@@ -17,6 +17,7 @@ class AutoStartReceiver : BroadcastReceiver() {
 
         val prefs = context.getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
         val autoStartMode = prefs.getInt("auto_start_mode", 0) // 0=Off, 1=BT
+        val connectionMode = prefs.getInt("connection_mode", 0)
 
         if (autoStartMode == 0) return
 
@@ -40,7 +41,7 @@ class AutoStartReceiver : BroadcastReceiver() {
                 Log.i(TAG, "MATCH! Checking Wi-Fi state before starting service...")
 
                 // Wrap the service start logic to ensure Wi-Fi is enabled
-                WifiNotificationHelper.checkWifiAndConnect(context) {
+                WifiNotificationHelper.checkWifiAndConnect(context, connectionMode = connectionMode) {
                     startService(context)
                 }
             }
