@@ -9,6 +9,7 @@ import android.os.Parcelable
 import android.util.Log
 import com.andrerinas.wirelesshelper.TransparentTriggerActivity
 import com.andrerinas.wirelesshelper.connection.AapProxy
+import com.andrerinas.wirelesshelper.net.WifiNetworkBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -64,6 +65,8 @@ abstract class BaseStrategy(protected val context: Context, private val scope: C
 
         scope.launch {
             try {
+                val boundWifi = if (!forceFakeNetwork) WifiNetworkBinding.currentNetwork else null
+
                 // 1. Start the Proxy Server with a listener
                 val proxy = AapProxy(hostIp, listener = object : AapProxy.Listener {
                     override fun onConnected() {
@@ -82,11 +85,10 @@ abstract class BaseStrategy(protected val context: Context, private val scope: C
 
                 val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
                 
-                // Determine which network to use. If forced, or if offline, use Network 0.
-                val targetNetwork = if (forceFakeNetwork) {
-                    createFakeNetwork(0)
-                } else {
-                    (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) connectivityManager.activeNetwork else null)
+                val targetNetwork = when {
+                    forceFakeNetwork -> createFakeNetwork(0)
+                    boundWifi != null -> boundWifi
+                    else -> (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) connectivityManager.activeNetwork else null)
                         ?: createFakeNetwork(0)
                 }
 

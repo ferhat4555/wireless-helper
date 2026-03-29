@@ -20,6 +20,7 @@ import com.andrerinas.wirelesshelper.strategy.StrategyHotspotPhone
 import com.andrerinas.wirelesshelper.strategy.StrategyHotspotTablet
 import com.andrerinas.wirelesshelper.strategy.StrategySharedNetwork
 import com.andrerinas.wirelesshelper.strategy.StrategyWifiDirect
+import com.andrerinas.wirelesshelper.net.WifiNetworkBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -94,7 +95,13 @@ class WirelessHelperService : Service(), BaseStrategy.StateListener {
         
         acquireWakeLock()
         currentStrategy?.stop()
-        
+
+        if (mode == 2) {
+            WifiNetworkBinding.start(this)
+        } else {
+            WifiNetworkBinding.stop(this)
+        }
+
         currentStrategy = when (mode) {
             0 -> StrategySharedNetwork(this, serviceScope)
             1 -> StrategyHotspotPhone(this, serviceScope)
@@ -211,6 +218,7 @@ class WirelessHelperService : Service(), BaseStrategy.StateListener {
     override fun onDestroy() {
         isRunning = false
         isConnected = false
+        WifiNetworkBinding.stop(this)
         currentStrategy?.stop()
         if (currentStrategy is BaseStrategy) {
             (currentStrategy as BaseStrategy).cleanup()
