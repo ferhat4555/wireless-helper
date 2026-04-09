@@ -8,6 +8,7 @@
     <string name="mode_hotspot_phone">手機熱點 (NSD + 虛擬網路)</string>
     <string name="mode_passive">平板熱點 (被動模式)</string>
     <string name="mode_wifi_direct">Wi-Fi 直連 (實驗性)</string>
+    <string name="mode_nearby">Google Nearby (Beta)</string>
     
     <string name="auto_start_label">自動啟動服務</string>
     <string name="auto_start_no">否 (手動)</string>

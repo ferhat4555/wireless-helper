@@ -11,6 +11,12 @@
     <string name="mode_hotspot_phone">Phone Hotspot</string>
     <string name="mode_passive">Tablet Hotspot</string>
     <string name="mode_wifi_direct">Wi-Fi Direct</string>
+    <string name="mode_nearby">Google Nearby (Beta)</string>
+    <string name="static_ip_label">Static IP Address</string>
+    <string name="static_ip_hint">Enter IP (e.g. 192.168.43.1)</string>
+    <string name="static_ip_desc">If set, the app will connect directly to this IP instead of searching.</string>
+    <string name="static_ip_dialog_title">Configure Static IP</string>
+    <string name="reset">Reset</string>
 
     <!-- Auto Start -->
     <string name="auto_start_label">Auto Start Service</string>
@@ -79,6 +85,7 @@
     <string name="language_portuguese">Portuguese (Brazil)</string>
     <string name="language_arabic">Arabic</string>
     <string name="language_spanish">Spanish</string>
+    <string name="language_italian">Italian</string>
 
     <!-- Notifications & Service -->
     <string name="notif_searching">Searching for Headunit…</string>

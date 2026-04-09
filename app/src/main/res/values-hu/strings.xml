@@ -8,6 +8,7 @@
     <string name="mode_hotspot_phone">Telefon Hotspot (NSD + Hamis hálózat)</string>
     <string name="mode_passive">Tablet Hotspot (Passzív)</string>
     <string name="mode_wifi_direct">Wi-Fi Direct (Kísérleti)</string>
+    <string name="mode_nearby">Google Nearby (Beta)</string>
     
     <string name="auto_start_label">Szolgáltatás automatikus indítása</string>
     <string name="auto_start_no">Nem (Kézi)</string>

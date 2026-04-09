@@ -15,6 +15,17 @@ class StrategyHotspotTablet(context: Context, private val scope: CoroutineScope)
     private val PORT_DISCOVERY = 5289
 
     override fun start() {
+        val prefs = context.getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
+        val staticIp = prefs.getString("static_ip_address", "") ?: ""
+
+        if (staticIp.isNotEmpty()) {
+            Log.i(TAG, "Strategy: Hotspot Tablet (Direct Connect to Static IP: $staticIp)")
+            getStrategyScope().launch {
+                launchAndroidAuto(staticIp, forceFakeNetwork = false)
+            }
+            return
+        }
+
         Log.i(TAG, "Strategy: Hotspot Tablet (Passive TCP Listener)")
         getStrategyScope().launch(Dispatchers.IO) {
             try {

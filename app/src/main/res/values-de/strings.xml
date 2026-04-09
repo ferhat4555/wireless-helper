@@ -10,7 +10,8 @@
     <string name="mode_nsd">Gemeinsames WLAN</string>
     <string name="mode_hotspot_phone">Handy-Hotspot</string>
     <string name="mode_passive">Tablet-Hotspot</string>
-    <string name="mode_wifi_direct">Wi-Fi Direct</string>
+    <string name="mode_wifi_direct">WLAN Direct</string>
+    <string name="mode_nearby">Google Nearby (Beta)</string>
 
     <!-- Auto Start -->
     <string name="auto_start_label">Dienst automatisch starten</string>
@@ -113,4 +114,9 @@
     <string name="write_settings_title">Berechtigung erforderlich</string>
     <string name="write_settings_msg">Um den Hotspot automatisch zu aktivieren, benötigt der Wireless Helper die Berechtigung \'Systemeinstellungen ändern\'. Bitte aktiviere diese im nächsten Bildschirm.</string>
     <string name="write_settings_button">Berechtigung erteilen</string>
+    <string name="static_ip_label">Statische IP-Adresse</string>
+    <string name="static_ip_hint">IP eingeben (z. B. 192.168.43.1)</string>
+    <string name="static_ip_desc">Wenn gesetzt, verbindet sich die App direkt mit dieser IP, anstatt zu suchen.</string>
+    <string name="static_ip_dialog_title">Statische IP konfigurieren</string>
+    <string name="reset">Zurücksetzen</string>
 </resources>

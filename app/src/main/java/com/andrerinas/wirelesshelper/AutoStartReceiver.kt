@@ -38,6 +38,21 @@ class AutoStartReceiver : BroadcastReceiver() {
             Log.i(TAG, "BT Device connected: ${device.name} ($deviceAddress)")
 
             if (isTarget) {
+                // Precise check if the device is actually fully connected (not just ACL)
+                // Using reflection
+                val isFullyConnected = try {
+                    val isConnectedMethod = device.javaClass.getMethod("isConnected")
+                    isConnectedMethod.invoke(device) as? Boolean ?: true
+                } catch (e: Exception) {
+                    Log.w(TAG, "Failed to check isConnected via reflection, falling back to true.", e)
+                    true // Fallback to true if reflection fails
+                }
+
+                if (!isFullyConnected) {
+                    Log.w(TAG, "Device ACL is connected but isConnected() is false. Skipping start.")
+                    return
+                }
+
                 Log.i(TAG, "MATCH! Checking Wi-Fi state before starting service...")
 
                 // Wrap the service start logic to ensure Wi-Fi is enabled

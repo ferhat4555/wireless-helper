@@ -16,7 +16,7 @@ import java.lang.reflect.Method
  *
  * Android 8+ changed OnStartTetheringCallback from an interface to an abstract class,
  * so java.lang.reflect.Proxy cannot be used. Instead, we use dexmaker to generate
- * a real subclass at runtime — the same technique Emil's WifiLauncher uses.
+ * a real subclass at runtime
  */
 object HotspotManager {
     private const val TAG = "HUREV_WIFI"
@@ -130,7 +130,6 @@ object HotspotManager {
      * - Old: java.lang.reflect.Proxy (only works for interfaces) or null → fails
      * - New: dexmaker generates a real class extending the abstract callback → works
      *
-     * Matches Emil's WifiLauncher approach in g/g.java
      */
     @Suppress("UNCHECKED_CAST")
     private fun createTetheringCallback(context: Context): Any? {

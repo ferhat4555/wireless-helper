@@ -8,6 +8,7 @@
     <string name="mode_hotspot_phone">Hotspot telefonu (NSD + Fikcyjna sieć)</string>
     <string name="mode_passive">Hotspot tabletu (Pasywny)</string>
     <string name="mode_wifi_direct">Wi-Fi Direct (Eksperymentalny)</string>
+    <string name="mode_nearby">Google Nearby (Beta)</string>
     
     <string name="auto_start_label">Autostart usługi</string>
     <string name="auto_start_no">Nie (Ręcznie)</string>

@@ -11,6 +11,7 @@
     <string name="mode_hotspot_phone">Точка доступа телефона</string>
     <string name="mode_passive">Точка доступа планшета</string>
     <string name="mode_wifi_direct">Wi-Fi Direct</string>
+    <string name="mode_nearby">Google Nearby (Beta)</string>
 
     <!-- Auto Start -->
     <string name="auto_start_label">Автозапуск сервиса</string>

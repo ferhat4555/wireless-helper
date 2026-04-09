@@ -53,6 +53,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="wirelesshelper" android:host="start" />
                 <data android:scheme="wirelesshelper" android:host="stop" />
+                <data android:scheme="wirelesshelper" android:host="config" />
             </intent-filter>
 
             <meta-data

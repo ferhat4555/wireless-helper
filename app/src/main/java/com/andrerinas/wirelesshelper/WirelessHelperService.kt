@@ -21,6 +21,7 @@ import com.andrerinas.wirelesshelper.strategy.StrategyHotspotTablet
 import com.andrerinas.wirelesshelper.strategy.StrategySharedNetwork
 import com.andrerinas.wirelesshelper.strategy.StrategyWifiDirect
 import com.andrerinas.wirelesshelper.net.WifiNetworkBinding
+import com.andrerinas.wirelesshelper.strategy.StrategyNearby
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -107,6 +108,7 @@ class WirelessHelperService : Service(), BaseStrategy.StateListener {
             1 -> StrategyHotspotPhone(this, serviceScope)
             2 -> StrategyHotspotTablet(this, serviceScope)
             3 -> StrategyWifiDirect(this, serviceScope)
+            4 -> StrategyNearby(this, serviceScope)
             else -> StrategySharedNetwork(this, serviceScope)
         }
         
