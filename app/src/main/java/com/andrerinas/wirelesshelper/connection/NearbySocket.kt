@@ -17,7 +17,10 @@ class NearbySocket : Socket() {
         get() = internalInputStream
         set(value) {
             internalInputStream = value
-            if (value != null) inputLatch.countDown()
+            if (value != null) {
+                android.util.Log.i("HUREV_NEARBY", "NearbySocket: InputStream is now AVAILABLE. Releasing latch.")
+                inputLatch.countDown()
+            }
         }
 
     var outputStreamWrapper: OutputStream?

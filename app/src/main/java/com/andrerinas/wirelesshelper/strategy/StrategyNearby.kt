@@ -73,8 +73,9 @@ class StrategyNearby(context: Context, scope: CoroutineScope) : BaseStrategy(con
 
     private val payloadCallback = object : PayloadCallback() {
         override fun onPayloadReceived(endpointId: String, payload: Payload) {
+            Log.i(TAG, "NearbyStrategy: Payload RECEIVED from $endpointId. Type: ${payload.type}")
             if (payload.type == Payload.Type.STREAM) {
-                Log.i(TAG, "NearbyStrategy: Received STREAM payload from $endpointId. Completing bidirectional tunnel...")
+                Log.i(TAG, "NearbyStrategy: Received STREAM payload. Completing bidirectional tunnel.")
                 
                 val socket = NearbySocket()
                 activeNearbySocket = socket
@@ -96,7 +97,11 @@ class StrategyNearby(context: Context, scope: CoroutineScope) : BaseStrategy(con
         }
 
         override fun onPayloadTransferUpdate(endpointId: String, update: PayloadTransferUpdate) {
-            // Monitor transfer progress
+            if (update.status == PayloadTransferUpdate.Status.SUCCESS) {
+                Log.d(TAG, "NearbyStrategy: Payload transfer SUCCESS")
+            } else if (update.status == PayloadTransferUpdate.Status.FAILURE) {
+                Log.e(TAG, "NearbyStrategy: Payload transfer FAILURE")
+            }
         }
     }
 }
