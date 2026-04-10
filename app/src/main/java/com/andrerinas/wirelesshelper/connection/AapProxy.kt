@@ -22,7 +22,7 @@ class AapProxy(
         fun onDisconnected()
     }
 
-    private val TAG = "HUREV_PROXY"
+    private val TAG = "HUREV_NEARBY"
     private var serverSocket: ServerSocket? = null
     private var isRunning = false
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())

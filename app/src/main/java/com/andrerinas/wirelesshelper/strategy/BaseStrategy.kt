@@ -24,7 +24,7 @@ abstract class BaseStrategy(protected val context: Context, private val scope: C
         fun onLaunchTimeout()
     }
 
-    protected val TAG = "HUREV_WIFI"
+    protected open val TAG = "HUREV_WIFI"
     private var activeProxy: AapProxy? = null
     var stateListener: StateListener? = null
     protected val isLaunching = AtomicBoolean(false)

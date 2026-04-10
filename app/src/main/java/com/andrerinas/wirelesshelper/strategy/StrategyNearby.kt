@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
  */
 class StrategyNearby(context: Context, scope: CoroutineScope) : BaseStrategy(context, scope) {
 
+    override val TAG = "HUREV_NEARBY"
     private val connectionsClient = Nearby.getConnectionsClient(context)
     private val SERVICE_ID = "com.andrerinas.headunitrevived.NEARBY"
     private var activeNearbySocket: NearbySocket? = null
@@ -57,17 +58,11 @@ class StrategyNearby(context: Context, scope: CoroutineScope) : BaseStrategy(con
         override fun onConnectionResult(endpointId: String, result: ConnectionResolution) {
             when (result.status.statusCode) {
                 ConnectionsStatusCodes.STATUS_OK -> {
-                    Log.i(TAG, "NearbyStrategy: Connected to $endpointId. Establishing Stream Tunnel...")
-                    val socket = NearbySocket()
-                    activeNearbySocket = socket
-                    
-                    val pipes = android.os.ParcelFileDescriptor.createPipe()
-                    socket.outputStreamWrapper = android.os.ParcelFileDescriptor.AutoCloseOutputStream(pipes[1])
-                    val streamPayload = Payload.fromStream(android.os.ParcelFileDescriptor.AutoCloseInputStream(pipes[0]))
-                    connectionsClient.sendPayload(endpointId, streamPayload)
+                    Log.i(TAG, "NearbyStrategy: Connected to $endpointId. Waiting for Tablet to initiate stream tunnel...")
+                    // We wait for the Tablet to send its stream first in onPayloadReceived.
                 }
-                ConnectionsStatusCodes.STATUS_CONNECTION_REJECTED -> Log.w("NearbyStrategy", "Connection rejected by $endpointId")
-                ConnectionsStatusCodes.STATUS_ERROR -> Log.e("NearbyStrategy", "Connection error with $endpointId")
+                ConnectionsStatusCodes.STATUS_CONNECTION_REJECTED -> Log.w(TAG, "NearbyStrategy: Connection rejected by $endpointId")
+                ConnectionsStatusCodes.STATUS_ERROR -> Log.e(TAG, "NearbyStrategy: Connection error with $endpointId")
             }
         }
 
@@ -79,12 +74,24 @@ class StrategyNearby(context: Context, scope: CoroutineScope) : BaseStrategy(con
     private val payloadCallback = object : PayloadCallback() {
         override fun onPayloadReceived(endpointId: String, payload: Payload) {
             if (payload.type == Payload.Type.STREAM) {
-                Log.i(TAG, "NearbyStrategy: Received STREAM payload from $endpointId. Launching Android Auto tunnel...")
-                activeNearbySocket?.inputStreamWrapper = payload.asStream()?.asInputStream()
+                Log.i(TAG, "NearbyStrategy: Received STREAM payload from $endpointId. Completing bidirectional tunnel...")
                 
-                // Pass the pre-connected socket to launchAndroidAuto.
-                // The hostIp is ignored because the socket is already connected.
-                launchAndroidAuto("127.0.0.1", preConnectedSocket = activeNearbySocket)
+                val socket = NearbySocket()
+                activeNearbySocket = socket
+                
+                // 1. Map incoming stream from Tablet to socket's input
+                socket.inputStreamWrapper = payload.asStream()?.asInputStream()
+                
+                // 2. Create outgoing pipe (Phone -> Tablet) and send it back
+                val pipes = android.os.ParcelFileDescriptor.createPipe()
+                socket.outputStreamWrapper = android.os.ParcelFileDescriptor.AutoCloseOutputStream(pipes[1])
+                val phoneToTabletPayload = Payload.fromStream(android.os.ParcelFileDescriptor.AutoCloseInputStream(pipes[0]))
+                
+                Log.d(TAG, "NearbyStrategy: Sending Phone->Tablet stream payload back...")
+                connectionsClient.sendPayload(endpointId, phoneToTabletPayload)
+                
+                // 3. Launch Android Auto with this tunnel socket
+                launchAndroidAuto("127.0.0.1", preConnectedSocket = socket)
             }
         }
 
