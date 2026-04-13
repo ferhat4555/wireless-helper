@@ -66,6 +66,7 @@
     <string name="language_czech">Čeština (Czech)</string>
     <string name="language_german">Deutsch (German)</string>
     <string name="language_spanish">Español (Spanish)</string>
+    <string name="language_italian">Italiaans</string>
     <string name="language_spanish_spain">Español (España)</string>
     <string name="language_hungarian">Magyar (Hungarian)</string>
     <string name="language_dutch">Nederlands (Dutch)</string>
@@ -78,6 +79,7 @@
 
     <!-- Notifications & Service -->
     <string name="notif_searching">Zoeken naar Headunit…</string>
+    <string name="notif_connecting">Gevonden…</string>
     <string name="notif_connected">Verbonden met Android Auto</string>
     <string name="notif_disconnected">Android Auto verbinding verbroken</string>
     <string name="notif_stop">Stoppen</string>
@@ -107,4 +109,9 @@
     <string name="write_settings_title">Toestemming vereist</string>
     <string name="write_settings_msg">Om de hotspot automatisch in te schakelen, heeft de Wireless Helper toestemming nodig om \'Systeeminstellingen te wijzigen\'. Schakel dit in op het volgende scherm.</string>
     <string name="write_settings_button">Toestemming verlenen</string>
+    <string name="static_ip_label">Statisch IP-adres</string>
+    <string name="static_ip_hint">Voer IP in (bijv. 192.168.43.1)</string>
+    <string name="static_ip_desc">Indien ingesteld, maakt de app direct verbinding met dit IP in plaats van te zoeken.</string>
+    <string name="static_ip_dialog_title">Statisch IP configureren</string>
+    <string name="reset">Resetten</string>
 </resources>

@@ -75,9 +75,11 @@
     <string name="language_russian">Русский (Russian)</string>
     <string name="language_ukrainian">Українська (Ukrainian)</string>
     <string name="language_chinese">繁體中文 (Taiwan)</string>
+    <string name="language_italian">Włoski</string>
 
     <!-- Notifications & Service -->
     <string name="notif_searching">Wyszukiwanie jednostki…</string>
+    <string name="notif_connecting">Znaleziono…</string>
     <string name="notif_connected">Połączono z Android Auto</string>
     <string name="notif_disconnected">Android Auto rozłączone</string>
     <string name="notif_stop">Zatrzymaj</string>
@@ -107,4 +109,9 @@
     <string name="write_settings_title">Wymagane uprawnienie</string>
     <string name="write_settings_msg">Aby automatycznie włączyć hotspot, Wireless Helper potrzebuje uprawnienia do \'Modyfikacji ustawień systemowych\'. Proszę włączyć je na następnym ekranie.</string>
     <string name="write_settings_button">Udziel uprawnienia</string>
+    <string name="static_ip_label">Statyczny adres IP</string>
+    <string name="static_ip_hint">Wpisz IP (np. 192.168.43.1)</string>
+    <string name="static_ip_desc">Jeśli ustawione, aplikacja połączy się bezpośrednio z tym adresem IP zamiast wyszukiwania.</string>
+    <string name="static_ip_dialog_title">Skonfiguruj statyczne IP</string>
+    <string name="reset">Resetuj</string>
 </resources>

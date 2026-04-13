@@ -79,9 +79,11 @@
     <string name="language_portuguese">Portuguese (Brazil)</string>
     <string name="language_arabic">العربية</string>
     <string name="language_spanish">Español</string>
+    <string name="language_italian">الإيطالية</string>
 
     <!-- Notifications & Service -->
     <string name="notif_searching">جار البحث عن Headunit…</string>
+    <string name="notif_connecting">تم العثور…</string>
     <string name="notif_connected">متصل بـ Android Auto</string>
     <string name="notif_disconnected">انقطع اتصال Android Auto</string>
     <string name="notif_stop">إيقاف</string>
@@ -114,4 +116,9 @@
     <string name="write_settings_title">الإذن مطلوب</string>
     <string name="write_settings_msg">لتفعيل نقطة الاتصال تلقائياً، يحتاج Wireless Helper إلى إذن لـ \"تعديل إعدادات النظام\". يرجى تفعيله في الشاشة التالية.</string>
     <string name="write_settings_button">منح الإذن</string>
+    <string name="static_ip_label">عنوان IP ثابت</string>
+    <string name="static_ip_hint">أدخل عنوان IP (مثلاً 192.168.43.1)</string>
+    <string name="static_ip_desc">إذا تم تعيينه، فسيقوم التطبيق بالاتصال مباشرة بهذا العنوان بدلاً من البحث.</string>
+    <string name="static_ip_dialog_title">تكوين عنوان IP ثابت</string>
+    <string name="reset">إعادة تعيين</string>
 </resources>

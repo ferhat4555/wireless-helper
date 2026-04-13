@@ -66,6 +66,7 @@
     <string name="language_czech">Čeština (Czech)</string>
     <string name="language_german">Deutsch (German)</string>
     <string name="language_spanish">Español (Spanish)</string>
+    <string name="language_italian">義大利語</string>
     <string name="language_spanish_spain">Español (España)</string>
     <string name="language_hungarian">Magyar (Hungarian)</string>
     <string name="language_dutch">Nederlands (Dutch)</string>
@@ -78,6 +79,7 @@
 
     <!-- Notifications & Service -->
     <string name="notif_searching">正在搜尋主機…</string>
+    <string name="notif_connecting">已找到…</string>
     <string name="notif_connected">已連接至 Android Auto</string>
     <string name="notif_disconnected">Android Auto 已斷開連接</string>
     <string name="notif_stop">停止</string>
@@ -107,4 +109,9 @@
     <string name="write_settings_title">需要權限</string>
     <string name="write_settings_msg">為了自動啟用熱點，Wireless Helper 需要「修改系統設定」權限。請在下一個畫面中啟用。</string>
     <string name="write_settings_button">授予權限</string>
+    <string name="static_ip_label">靜態 IP 地址</string>
+    <string name="static_ip_hint">輸入 IP (例如 192.168.43.1)</string>
+    <string name="static_ip_desc">如果已設定，應用程式將直接連接到此 IP，而不是搜尋。</string>
+    <string name="static_ip_dialog_title">設定靜態 IP</string>
+    <string name="reset">重設</string>
 </resources>

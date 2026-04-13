@@ -79,9 +79,11 @@
     <string name="language_portuguese">Portuguese (Brazil)</string>
     <string name="language_arabic">Арабский</string>
     <string name="language_spanish">Español</string>
+    <string name="language_italian">Итальянский</string>
 
     <!-- Notifications & Service -->
     <string name="notif_searching">Поиск Headunit…</string>
+    <string name="notif_connecting">Найдено…</string>
     <string name="notif_connected">Подключено к Android Auto</string>
     <string name="notif_disconnected">Android Auto отключён</string>
     <string name="notif_stop">Остановить</string>
@@ -114,4 +116,9 @@
     <string name="write_settings_title">Требуется разрешение</string>
     <string name="write_settings_msg">Для автоматического включения точки доступа Wireless Helper требуется разрешение на «Изменение системных настроек». Пожалуйста, включите его на следующем экране.</string>
     <string name="write_settings_button">Предоставить разрешение</string>
+    <string name="static_ip_label">Статический IP-адрес</string>
+    <string name="static_ip_hint">Введите IP (например, 192.168.43.1)</string>
+    <string name="static_ip_desc">Если установлено, приложение будет подключаться напрямую к этому IP вместо поиска.</string>
+    <string name="static_ip_dialog_title">Настройка статического IP</string>
+    <string name="reset">Сброс</string>
 </resources>

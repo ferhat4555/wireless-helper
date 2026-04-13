@@ -79,6 +79,7 @@
     <string name="language_portuguese">Portuguese (Brazil)</string>
     <string name="language_arabic">Arabisch</string>
     <string name="language_spanish">Español</string>
+    <string name="language_italian">Italienisch</string>
 
     <!-- Notifications & Service -->
     <string name="notif_searching">Suche nach Headunit…</string>

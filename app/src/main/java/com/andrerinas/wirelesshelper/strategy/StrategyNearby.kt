@@ -12,13 +12,13 @@ import kotlinx.coroutines.launch
 /**
  * A connection strategy using Google Nearby Connections API.
  * The Phone (WirelessHelper) acts as an ADVERTISER only.
- * Uses Stream Tunneling (like Emil's implementation) for robust connections.
+ * Uses Stream Tunneling for robust connections.
  */
 class StrategyNearby(context: Context, scope: CoroutineScope) : BaseStrategy(context, scope) {
 
     override val TAG = "HUREV_NEARBY"
     private val connectionsClient = Nearby.getConnectionsClient(context)
-    private val SERVICE_ID = "gb.xxy.hr"
+    private val SERVICE_ID = "com.andrerinas.hurev"
     private var activeNearbySocket: NearbySocket? = null
     private var activePipes: Array<android.os.ParcelFileDescriptor>? = null
 

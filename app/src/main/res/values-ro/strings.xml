@@ -66,6 +66,7 @@
     <string name="language_czech">Čeština (Czech)</string>
     <string name="language_german">Deutsch (German)</string>
     <string name="language_spanish">Español (Spanish)</string>
+    <string name="language_italian">Italiană</string>
     <string name="language_spanish_spain">Español (España)</string>
     <string name="language_hungarian">Magyar (Hungarian)</string>
     <string name="language_dutch">Nederlands (Dutch)</string>
@@ -78,6 +79,7 @@
 
     <!-- Notifications & Service -->
     <string name="notif_searching">Căutare unitate…</string>
+    <string name="notif_connecting">Găsit…</string>
     <string name="notif_connected">Conectat la Android Auto</string>
     <string name="notif_disconnected">Android Auto deconectat</string>
     <string name="notif_stop">Oprire</string>
@@ -107,4 +109,9 @@
     <string name="write_settings_title">Permisiune necesară</string>
     <string name="write_settings_msg">Pentru a activa automat hotspot-ul, Wireless Helper are nevoie de permisiunea de a „Modifica setările sistemului”. Vă rugăm să o activați în ecranul următor.</string>
     <string name="write_settings_button">Acordă permisiunea</string>
+    <string name="static_ip_label">Adresă IP statică</string>
+    <string name="static_ip_hint">Introduceți IP (ex: 192.168.43.1)</string>
+    <string name="static_ip_desc">Dacă este setată, aplicația se va conecta direct la acest IP în loc să caute.</string>
+    <string name="static_ip_dialog_title">Configurare IP static</string>
+    <string name="reset">Resetare</string>
 </resources>

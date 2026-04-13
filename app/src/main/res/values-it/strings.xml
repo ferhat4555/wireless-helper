@@ -84,6 +84,7 @@
 
     <!-- Notifications & Service -->
     <string name="notif_searching">Ricerca Headunit in corso…</string>
+    <string name="notif_connecting">Trovato…</string>
     <string name="notif_connected">Connesso ad Android Auto</string>
     <string name="notif_disconnected">Android Auto scollegato</string>
     <string name="notif_stop">Ferma</string>

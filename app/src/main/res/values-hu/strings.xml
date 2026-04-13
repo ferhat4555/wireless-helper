@@ -66,6 +66,7 @@
     <string name="language_czech">Čeština (Czech)</string>
     <string name="language_german">Deutsch (German)</string>
     <string name="language_spanish">Español (Spanish)</string>
+    <string name="language_italian">Olasz</string>
     <string name="language_spanish_spain">Español (España)</string>
     <string name="language_hungarian">Magyar (Hungarian)</string>
     <string name="language_dutch">Nederlands (Dutch)</string>
@@ -78,6 +79,7 @@
 
     <!-- Notifications & Service -->
     <string name="notif_searching">Egység keresése…</string>
+    <string name="notif_connecting">Megtalálva…</string>
     <string name="notif_connected">Csatlakozva az Android Auto-hoz</string>
     <string name="notif_disconnected">Android Auto lekapcsolva</string>
     <string name="notif_stop">Leállítás</string>
@@ -107,4 +109,9 @@
     <string name="write_settings_title">Engedély szükséges</string>
     <string name="write_settings_msg">A hotspot automatikus bekapcsolásához a Wireless Helpernek engedélyre van szüksége a „Rendszerbeállítások módosításához”. Kérjük, engedélyezze a következő képernyőn.</string>
     <string name="write_settings_button">Engedély megadása</string>
+    <string name="static_ip_label">Statikus IP-cím</string>
+    <string name="static_ip_hint">Adja meg az IP-t (pl. 192.168.43.1)</string>
+    <string name="static_ip_desc">Ha be van állítva, az alkalmazás közvetlenül ehhez az IP-hez csatlakozik a keresés helyett.</string>
+    <string name="static_ip_dialog_title">Statikus IP konfigurálása</string>
+    <string name="reset">Visszaállítás</string>
 </resources>

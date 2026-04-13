@@ -79,9 +79,11 @@
     <string name="language_portuguese">Português (Brasil)</string>
     <string name="language_arabic">العربية</string>
     <string name="language_spanish">Español</string>
+    <string name="language_italian">Italiano</string>
 
     <!-- Notifications & Service -->
     <string name="notif_searching">Buscando unidad principal…</string>
+    <string name="notif_connecting">Encontrado…</string>
     <string name="notif_connected">Conectado a Android Auto</string>
     <string name="notif_disconnected">Android Auto desconectado</string>
     <string name="notif_stop">Detener</string>
@@ -114,4 +116,9 @@
     <string name="write_settings_title">Permiso necesario</string>
     <string name="write_settings_msg">Para activar automáticamente el punto de acceso, Wireless Helper necesita permiso para \'Modificar ajustes del sistema\'. Por favor, actívelo en la siguiente pantalla.</string>
     <string name="write_settings_button">Conceder permiso</string>
+    <string name="static_ip_label">Dirección IP estática</string>
+    <string name="static_ip_hint">Ingrese IP (ej. 192.168.43.1)</string>
+    <string name="static_ip_desc">Si se establece, la aplicación se conectará directamente a esta IP en lugar de buscar.</string>
+    <string name="static_ip_dialog_title">Configurar IP estática</string>
+    <string name="reset">Restablecer</string>
 </resources>

@@ -66,6 +66,7 @@
     <string name="language_czech">Čeština (Czech)</string>
     <string name="language_german">Deutsch (German)</string>
     <string name="language_spanish">Español (Spanish)</string>
+    <string name="language_italian">Italština</string>
     <string name="language_spanish_spain">Español (España)</string>
     <string name="language_hungarian">Magyar (Hungarian)</string>
     <string name="language_dutch">Nederlands (Dutch)</string>
@@ -78,6 +79,7 @@
 
     <!-- Notifications & Service -->
     <string name="notif_searching">Vyhledávání jednotky…</string>
+    <string name="notif_connecting">Nalezeno…</string>
     <string name="notif_connected">Připojeno k Android Auto</string>
     <string name="notif_disconnected">Android Auto odpojeno</string>
     <string name="notif_stop">Zastavit</string>
@@ -107,4 +109,9 @@
     <string name="write_settings_title">Vyžadováno oprávnění</string>
     <string name="write_settings_msg">K automatickému zapnutí hotspotu vyžaduje Wireless Helper oprávnění k \'Měníní systémových nastavení\'. Povolte jej prosím na další obrazovce.</string>
     <string name="write_settings_button">Udělit oprávnění</string>
+    <string name="static_ip_label">Statická IP adresa</string>
+    <string name="static_ip_hint">Zadejte IP (např. 192.168.43.1)</string>
+    <string name="static_ip_desc">Pokud je nastaveno, aplikace se připojí přímo k této IP adrese namísto vyhledávání.</string>
+    <string name="static_ip_dialog_title">Konfigurace statické IP</string>
+    <string name="reset">Resetovat</string>
 </resources>
