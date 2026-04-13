@@ -118,6 +118,7 @@ class MainActivity : AppCompatActivity() {
             getString(R.string.language_german),
             getString(R.string.language_spanish),
             getString(R.string.language_spanish_spain),
+            getString(R.string.language_turkish),
             getString(R.string.language_hungarian),
             getString(R.string.language_dutch),
             getString(R.string.language_polish),
@@ -129,7 +130,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private val languageTags = arrayOf("", "en", "ar", "cs", "de", "es", "es-ES", "hu", "nl", "pl", "pt-BR", "ro", "ru", "uk", "zh-TW")
+    private val languageTags = arrayOf("", "en", "ar", "cs", "de", "es", "es-ES", "hu", "nl", "pl", "pt-BR", "ro", "ru", "tr", "uk", "zh-TW")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_WirelessHelper)
